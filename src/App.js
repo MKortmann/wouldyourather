@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Appbar from "./components/Appbar";
-import ModalInput from "./components/ModalInput";
+import Welcome from "./components/Welcome";
+import SignUp from "./components/SignUp";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import { _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from "./_DATA";
 
 function App() {
 
-  useEffect( ()=> {
+
+  const [authUser, setAuthUser] = useState("");
+
+  // Here we load all the users and questions
+  useEffect( () => {
     // _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "Marcelo"})
     // _getUsers()
     // .then(res => console.log(res))
@@ -31,21 +36,41 @@ function App() {
     // debugger
   }
 
-
-
+  const userSelected = (user) => {
+    // setAuthUser(user):  only if the object is mounted!
+    if(user !== "") {
+      setAuthUser(user);
+    }
+  }
 
   const componentModal = () => {
     return (
-      <ModalInput clickedBtnPlay={clickedBtnPlay}/>
+      <Welcome select={userSelected} authUser={authUser}/>
     )
   }
 
 
+  const logged = () => {
+    return (
+      <div>
+        <h1>You are logged</h1>
+      </div>
+    )
+  }
+  const signUp = () => {
+    return (
+      <SignUp />
+    )
+  }
   return (
     <BrowserRouter>
       <div className="App">
         <Appbar />
-        <Route path="/" exact component={componentModal} />
+        <Switch>
+          <Route path="/" exact component={componentModal} />
+          <Route path="/logged" component={logged} />
+          <Route path="/signUp" component={signUp} />
+        </Switch>
       </div>
     </BrowserRouter>
   );

@@ -160,7 +160,7 @@ export function _saveQuestion (question) {
       }
 
     // At same time we add a question we also add a user
-    // I HAD TO MAKE THIS IMPLEMENTATION BECAUSE IT WAS NOT WORKING WITHOUR REDUX
+    // I HAD TO MAKE THIS IMPLEMENTATION BECAUSE IT WAS NOT WORKING WITHOUT REDUX
     if (users[authedUser] === undefined) {
       users[authedUser] = {
         id: authedUser,

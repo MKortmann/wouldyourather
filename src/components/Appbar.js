@@ -19,7 +19,9 @@ const useStyles = makeStyles(theme => ({
   login: {
     flexGrow: 1,
     textAlign: "right",
-    cursor: "pointer"
+    cursor: "pointer",
+    marginLeft: 0,
+    paddingLeft: 0
   },
 }));
 
@@ -41,7 +43,8 @@ export default function DenseAppBar() {
             Leaderboard
           </Typography>
           <Typography variant="h6" color="inherit"  className={classes.login}>
-            Login
+            <span>Login</span>
+            <span style={{marginLeft: "20px"}}>SignUp</span>
           </Typography>
         </Toolbar>
       </AppBar>
