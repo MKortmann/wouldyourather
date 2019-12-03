@@ -3,6 +3,7 @@ import './App.css';
 import Appbar from "./components/Appbar";
 import Welcome from "./components/Welcome";
 import SignUp from "./components/SignUp";
+import Logged from "./components/Logged";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import { _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from "./_DATA";
 
@@ -49,19 +50,12 @@ function App() {
     )
   }
 
-
   const logged = () => {
     return (
-      <div>
-        <h1>You are logged</h1>
-      </div>
+      <Logged authUser={authUser}/>
     )
   }
-  const signUp = () => {
-    return (
-      <SignUp />
-    )
-  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -69,7 +63,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={componentModal} />
           <Route path="/logged" component={logged} />
-          <Route path="/signUp" component={signUp} />
+          <Route path="/signUp" component={SignUp} />
         </Switch>
       </div>
     </BrowserRouter>
