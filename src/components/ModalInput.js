@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Input from "./Input";
@@ -30,9 +30,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ServerModal() {
+export default function ServerModal(props) {
   const classes = useStyles();
   const rootRef = React.useRef(null);
+
+  const [userData, setUserData] = useState({
+    fullName: "",
+    userName: "",
+    eMail: ""
+  });
+
+  const onChangeInputText = (text, elem) => {
+  // using destructuring
+  let obj = {...userData};
+  // setting the actual value in the correct key=elem
+  obj[elem] = text;
+  setUserData(obj);
+  }
+
 
   return (
     <div className={classes.root} ref={rootRef}>
@@ -49,11 +64,10 @@ export default function ServerModal() {
         <div className={classes.paper}>
           <h2 id="server-modal-title">Welcome To Would You Rather</h2>
           <p id="server-modal-description">Please login to start to play</p>
-          <Input label={"Please, enter your first name"}/>
-          <Input label={"Please, enter your last name"}/>
-          <Input label={"Please, enter your user name"}/>
-          <Input label={"Please, enter your E-Mail"}/>
-          <Button label={"play"}/>
+          <Input onChangeInputText={onChangeInputText} label={"Please, enter your full name"} elem={"fullName"}/>
+          <Input onChangeInputText={onChangeInputText} label={"Please, enter your user name"} elem={"userName"}/>
+          <Input onChangeInputText={onChangeInputText} label={"Please, enter your E-Mail"} elem={"eMail"}/>
+          <Button clicked={props.clickedBtnPlay} label={"play"}/>
         </div>
       </Modal>
     </div>

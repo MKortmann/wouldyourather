@@ -29,7 +29,7 @@ function button (props) {
 
   return (
     <React.Fragment>
-      <MyButton  variant="contained" color="default" style={{background: props.color, width: props.width}}>
+      <MyButton  onClick={props.clicked} variant="contained" color="default" style={{background: props.color, width: props.width}}>
         {props.label}
       </MyButton>
     </React.Fragment>

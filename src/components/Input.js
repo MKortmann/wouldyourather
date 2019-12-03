@@ -19,12 +19,10 @@ const useStyles = makeStyles(theme => ({
 export default function Input(props) {
   const classes = useStyles();
 
-        // onChange={props.onChange}
-        // value={props.value}
-
   return (
     <div className={classes.container}>
       <TextField
+        onChange={e => props.onChangeInputText(e.target.value, props.elem)}
         id="standard-full-width"
         label={props.label}
         style={{ margin: 4 }}
