@@ -19,21 +19,6 @@ function App() {
     }
   }
 
-  // // Data collected from SignUp
-  // const [userData, setUserData] = useState({
-  //   fullName: "",
-  //   userName: "",
-  //   eMail: ""
-  // });
-  //
-  // const onChangeInputText = (text, elem) => {
-  // // using destructuring
-  // let obj = {...userData};
-  // // setting the actual value in the correct key=elem
-  // obj[elem] = text;
-  // setUserData(obj);
-  // }
-
   // Here we load all the users and questions
   useEffect( () => {
     // _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "Marcelo"})
@@ -73,14 +58,9 @@ function App() {
     )
   }
 
-  const getValue = (value, elem) => {
-
-    console.log(`${elem}: ${value}`);
-  }
-
   const signUp = () => {
     return (
-      <SignUp valueInput={getValue}/>
+      <SignUp />
     )
   }
 

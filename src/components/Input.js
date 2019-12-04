@@ -24,8 +24,9 @@ export default function Input(props) {
   return (
     <div className={classes.container}>
       <TextField
-        onChange={e => {setTextInput(e.target.value)
-                        props.valueInput(e.target.value, props.elem)}}
+        onChange={e => {setTextInput(e.target.value, props.elem)
+          // saving the user data of this user to local storage
+          localStorage.setItem(props.elem, JSON.stringify(e.target.value))}}
         id={props.label}
         label={props.label}
         style={{ margin: 4 }}
