@@ -3,21 +3,11 @@ import './App.css';
 import Appbar from "./components/Appbar";
 import Welcome from "./components/Welcome";
 import SignUp from "./components/SignUp";
-import Logged from "./components/Logged";
+import Logged from "./containers/Logged";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import { _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from "./_DATA";
 
 function App() {
-
-  // data get from SignIn (selected user)
-  const [authUser, setAuthUser] = useState("");
-
-  const userSelected = (user) => {
-    // setAuthUser(user):  only if the object is mounted!
-    if(user !== "") {
-      setAuthUser(user);
-    }
-  }
 
   // Here we load all the users and questions
   useEffect( () => {
@@ -30,6 +20,8 @@ function App() {
     _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "marcelo"})
     // _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "marcelo"})
     // _saveQuestion({optionOneText: "use calm2", optionTwoText: "use halb2", author: "sarahedo"})
+    // let's clear the localStorage
+    localStorage.clear();
 
   }, [])
 
@@ -48,13 +40,13 @@ function App() {
 
   const componentModal = () => {
     return (
-      <Welcome select={userSelected} authUser={authUser}/>
+      <Welcome />
     )
   }
 
   const logged = () => {
     return (
-      <Logged authUser={authUser}/>
+      <Logged />
     )
   }
 

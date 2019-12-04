@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Input from "./Input";
@@ -36,7 +36,9 @@ const useStyles = makeStyles(theme => ({
 export default function ServerModal(props) {
   const classes = useStyles();
 
-  // <Button clicked={props.signInBtn} label={"SignIn"}/>
+  useEffect(() => {
+    localStorage.clear();
+  }, [])
 
   return (
     <div>
@@ -53,7 +55,7 @@ export default function ServerModal(props) {
           <h2 id="server-modal-title">Welcome To Would You Rather</h2>
           <Select select={props.select} authUser={props.authUser}/>
           <hr/><br/>
-          <Link to="/logged" style={buttonStyle}>SignIn</Link>
+          <Link to="/logged" style={buttonStyle} >SignIn</Link>
           <Link to="/signUp" style={buttonStyle}>SignUp</Link>
         </div>
       </Modal>

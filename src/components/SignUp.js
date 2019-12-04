@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Input from "./Input";
@@ -35,7 +35,9 @@ export default function ServerModal(props) {
   const classes = useStyles();
   const rootRef = React.useRef(null);
 
-          // <Button clicked={() => props.clickedBtnPlay(userData)} label={"play"}/>
+  useEffect(() => {
+    localStorage.clear();
+  }, [])
 
   return (
     <div className={classes.root} ref={rootRef}>
@@ -52,9 +54,10 @@ export default function ServerModal(props) {
         <div className={classes.paper}>
           <h2 id="server-modal-title">Welcome To Would You Rather</h2>
           <p id="server-modal-description">Please login to start to play</p>
-          <Input valueInput={props.valueInput} label={"Please, enter your full name"} elem={"fullName"} />
+          <Input label={"Please, enter your full name"} elem={"fullName"} />
           <Input label={"Please, enter your user name"} elem={"userName"}/>
           <Input label={"Please, enter your E-Mail"} elem={"eMail"}/>
+          <Link to="/"  style={buttonStyle}>Back</Link>
           <Link to="/logged/"  style={buttonStyle}>Play</Link>
         </div>
       </Modal>

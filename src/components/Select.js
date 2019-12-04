@@ -21,6 +21,8 @@ export default function ControlledOpenSelect(props) {
   const classes = useStyles();
   // to debug: state saved in select
   const [users, setUsers] = useState([]);
+  // to debug: state saved in select
+  const [user, setUser] = useState([]);
   // const [user, setUser] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -34,17 +36,6 @@ export default function ControlledOpenSelect(props) {
       }
     )
   }, [])
-
-  const handleChange = event => {
-    // for some React Error, we have to send back the value of the selected user!
-    //it is not working getting it here direct from the state
-    /*
-    Are you passing the value back into the component? In v1, react-select is
-    now "controlled" so the actual value has to be passed back in as a prop.
-    */
-    // setUser(event.target.value);
-    props.select(event.target.value)
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -69,7 +60,10 @@ export default function ControlledOpenSelect(props) {
           onClose={handleClose}
           onOpen={handleOpen}
           value={props.authUser}
-          onChange={handleChange}
+          onChange={e =>{ // saving the user data of this user to local storage
+                      localStorage.setItem("selectedUser", JSON.stringify(e.target.value))
+                      setUser(e.target.value)}}
+          value={user}
         >
         {users.map((user, index) => {
           return (
