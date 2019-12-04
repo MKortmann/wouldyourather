@@ -10,6 +10,7 @@ import MKLogo from '../icons/mk.svg';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    background: 'rgba(0,212,255,0.8)'
   },
   tab: {
     marginRight: theme.spacing(2),
@@ -31,7 +32,7 @@ export default function DenseAppBar() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar variant="dense">
+        <Toolbar variant="dense" className={classes.root}>
             <img src={MKLogo} alt="MK-Logo" />
           <Typography variant="h6" color="inherit" className={classes.tab} >
             Home

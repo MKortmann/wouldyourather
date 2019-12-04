@@ -36,20 +36,6 @@ const useStyles = makeStyles(theme => ({
 export default function ServerModal(props) {
   const classes = useStyles();
 
-  const [userData, setUserData] = useState({
-    fullName: "",
-    userName: "",
-    eMail: ""
-  });
-
-  const onChangeInputText = (text, elem) => {
-  // using destructuring
-  let obj = {...userData};
-  // setting the actual value in the correct key=elem
-  obj[elem] = text;
-  setUserData(obj);
-  }
-
   // <Button clicked={props.signInBtn} label={"SignIn"}/>
 
   return (

@@ -9,8 +9,30 @@ import { _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from "./
 
 function App() {
 
-
+  // data get from SignIn (selected user)
   const [authUser, setAuthUser] = useState("");
+
+  const userSelected = (user) => {
+    // setAuthUser(user):  only if the object is mounted!
+    if(user !== "") {
+      setAuthUser(user);
+    }
+  }
+
+  // // Data collected from SignUp
+  // const [userData, setUserData] = useState({
+  //   fullName: "",
+  //   userName: "",
+  //   eMail: ""
+  // });
+  //
+  // const onChangeInputText = (text, elem) => {
+  // // using destructuring
+  // let obj = {...userData};
+  // // setting the actual value in the correct key=elem
+  // obj[elem] = text;
+  // setUserData(obj);
+  // }
 
   // Here we load all the users and questions
   useEffect( () => {
@@ -37,12 +59,7 @@ function App() {
     // debugger
   }
 
-  const userSelected = (user) => {
-    // setAuthUser(user):  only if the object is mounted!
-    if(user !== "") {
-      setAuthUser(user);
-    }
-  }
+
 
   const componentModal = () => {
     return (
@@ -56,14 +73,25 @@ function App() {
     )
   }
 
+  const getValue = (value, elem) => {
+
+    console.log(`${elem}: ${value}`);
+  }
+
+  const signUp = () => {
+    return (
+      <SignUp valueInput={getValue}/>
+    )
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
         <Appbar />
         <Switch>
           <Route path="/" exact component={componentModal} />
-          <Route path="/logged" component={logged} />
-          <Route path="/signUp" component={SignUp} />
+          <Route path="/logged/" component={logged} />
+          <Route path="/signUp" component={signUp} />
         </Switch>
       </div>
     </BrowserRouter>

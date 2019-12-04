@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField";
 
@@ -19,11 +19,14 @@ const useStyles = makeStyles(theme => ({
 export default function Input(props) {
   const classes = useStyles();
 
+  const [textInput, setTextInput] = useState("");
+
   return (
     <div className={classes.container}>
       <TextField
-        onChange={e => props.onChangeInputText(e.target.value, props.elem)}
-        id="standard-full-width"
+        onChange={e => {setTextInput(e.target.value)
+                        props.valueInput(e.target.value, props.elem)}}
+        id={props.label}
         label={props.label}
         style={{ margin: 4 }}
         placeholder={props.label}
@@ -31,7 +34,7 @@ export default function Input(props) {
         InputLabelProps={{
           shrink: true,
         }}
-
+        value={textInput}
       />
     </div>
   );
