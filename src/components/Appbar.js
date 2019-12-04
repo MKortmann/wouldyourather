@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MKLogo from '../icons/mk.svg';
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,24 +28,52 @@ const useStyles = makeStyles(theme => ({
 export default function DenseAppBar() {
   const classes = useStyles();
 
+  // const [isAuth, setIsAuth] = useState(false);
+
+  let  componentToRender = (
+      <React.Fragment>
+        <Typography variant="h6" color="inherit" className={classes.tab} >
+          Welcome to Would You Rather
+        </Typography>
+      </React.Fragment>
+    )
+  //
+  // useEffect(()=> {
+  //   console.log(`[Logged.js]: use effect run`);
+    //
+    // if ( localStorage.getItem("authUser") !== null) {
+    //   setIsAuth(true);
+    //   console.log("app bar setted true");
+    // } else {
+    //   setIsAuth(false);
+    //   console.log("app bar setted false");
+    // }
+    // componentToRender = (
+    //     <React.Fragment>
+    //       <Typography variant="h6" color="inherit" className={classes.tab} >
+    //         Home
+    //       </Typography>
+    //       <Typography variant="h6" color="inherit" className={classes.tab}>
+    //         New Question
+    //       </Typography>
+    //       <Typography variant="h6" color="inherit" className={classes.tab}  >
+    //         Leaderboard
+    //       </Typography>
+    //       <Typography variant="h6" color="inherit"  className={classes.login}>
+    //         <span>SignOut</span>
+    //       </Typography>
+    //     </React.Fragment>
+    //   )
+  // })
+
+
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar variant="dense" className={classes.root}>
             <img src={MKLogo} alt="MK-Logo" />
-          <Typography variant="h6" color="inherit" className={classes.tab} >
-            Home
-          </Typography>
-          <Typography variant="h6" color="inherit" className={classes.tab}>
-            New Question
-          </Typography>
-          <Typography variant="h6" color="inherit" className={classes.tab}  >
-            Leaderboard
-          </Typography>
-          <Typography variant="h6" color="inherit"  className={classes.login}>
-            <span>Login</span>
-            <span style={{marginLeft: "20px"}}>SignUp</span>
-          </Typography>
+            {componentToRender}
         </Toolbar>
       </AppBar>
     </div>

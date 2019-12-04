@@ -3,11 +3,16 @@ import './App.css';
 import Appbar from "./components/Appbar";
 import Welcome from "./components/Welcome";
 import SignUp from "./components/SignUp";
+import Checking from "./containers/Checking";
 import Logged from "./containers/Logged";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import { _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from "./_DATA";
 
+
 function App() {
+
+  const [loggedInStatus, setLoggedInStatus] = useState("NOT_LOGGED_IN");
+
 
   // Here we load all the users and questions
   useEffect( () => {
@@ -25,6 +30,15 @@ function App() {
 
   }, [])
 
+  useEffect( () => {
+
+
+    console.log(`[App.js]: use effect run`);
+
+  })
+
+
+
 
   const clickedBtnPlay = (userData) => {
     // debugger
@@ -36,34 +50,36 @@ function App() {
     // debugger
   }
 
-
-
-  const componentModal = () => {
-    return (
-      <Welcome />
-    )
-  }
-
-  const logged = () => {
-    return (
-      <Logged />
-    )
-  }
-
-  const signUp = () => {
-    return (
-      <SignUp />
-    )
-  }
-
   return (
     <BrowserRouter>
       <div className="App">
         <Appbar />
         <Switch>
-          <Route path="/" exact component={componentModal} />
-          <Route path="/logged/" component={logged} />
-          <Route path="/signUp" component={signUp} />
+        <Route
+          exact
+          path={"/"}
+          render = { props => (
+            <Welcome loggedInStatus={loggedInStatus}/>
+          )}
+        />
+        <Route
+          path={"/signUp"}
+          render = { props => (
+            <SignUp loggedInStatus={loggedInStatus}/>
+          )}
+        />
+        <Route
+          path={"/checking"}
+          render = { props => (
+            <Checking loggedInStatus={loggedInStatus}/>
+          )}
+        />
+        <Route
+          path={"/logged"}
+          render = { props => (
+            <Logged loggedInStatus={loggedInStatus}/>
+          )}
+        />
         </Switch>
       </div>
     </BrowserRouter>

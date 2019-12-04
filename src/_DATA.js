@@ -119,6 +119,24 @@ function generateUID () {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
+export function _addUser (newUser) {
+  // At same time we add a question we also add a user
+  // I HAD TO MAKE THIS IMPLEMENTATION BECAUSE IT WAS NOT WORKING WITHOUT REDUX
+  if (users[newUser] === undefined) {
+    users[newUser] = {
+      id: newUser,
+      name: newUser,
+      avatarURL: "xxx",
+      answers: {
+      },
+      questions: [],
+    }
+  }
+  return new Promise((res, rej) => {
+    setTimeout(() => res("User Added"), 1000)
+  })
+}
+
 export function _getUsers () {
   return new Promise((res, rej) => {
     setTimeout(() => res({...users}), 1000)
