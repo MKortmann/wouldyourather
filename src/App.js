@@ -50,6 +50,11 @@ function App() {
     // debugger
   }
 
+  const handleLogin = (data) => {
+    debugger
+    console.log(data);
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -71,7 +76,7 @@ function App() {
         <Route
           path={"/checking"}
           render = { props => (
-            <Checking loggedInStatus={loggedInStatus}/>
+            <Checking handleLogin={handleLogin} loggedInStatus={loggedInStatus}/>
           )}
         />
         <Route

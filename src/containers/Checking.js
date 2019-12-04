@@ -42,8 +42,11 @@ const Checking = (props) => {
   // })
 
   function handleSuccessfulAuth (status) {
+    debugger
     console.log(status);
+    props.handleLogin("LOGGED_IN")
     props.history.push("/logged") //doing redirect here.
+
   }
 
   return (

@@ -56,7 +56,7 @@ export default function ServerModal(props) {
           <p> {props.loggedInStatus}</p>
           <Select select={props.select} authUser={props.authUser}/>
           <hr/><br/>
-          <Link to="/logged" style={buttonStyle} >SignIn</Link>
+          <Link to="/checking" style={buttonStyle} >SignIn</Link>
           <Link to="/signUp" style={buttonStyle}>SignUp</Link>
         </div>
       </Modal>
