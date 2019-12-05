@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -19,22 +19,43 @@ const useStyles = makeStyles({
   }
 });
 
+export default function Questions(props) {
 
 
 
-export default function Questions() {
+  useEffect( () => {
+
+    console.log(`[Questions]: ${props.answeredQuestions}`);
+    console.log(`[Not Answered Questions]: ${props.unansweredQuestions}`);
+
+  }, [])
+
+
+  let componentQuestions = null;
+  if (props.answeredQuestionsShowFlag === true) {
+    componentQuestions = (
+        props.answeredQuestions.map((item, index) => {
+          return(<Question />)
+        })
+    )
+  } else {
+    componentQuestions = (
+        props.unansweredQuestions.map((item, index) => {
+          return(<Question />)
+        })
+    )
+  }
+
   const classes = useStyles();
 
   return (
     <React.Fragment>
       <CssBaseline />
       <Container >
+      <div className={classes.root} component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh'}}>
+      {componentQuestions}
 
-        <div className={classes.root} component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh'}}>
-          <Question />
-          <Question />
-          <Question />
-        </div>
+      </div>
       </Container>
     </React.Fragment>
   );
