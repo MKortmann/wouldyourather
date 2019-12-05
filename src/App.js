@@ -39,19 +39,6 @@ function App(props) {
 
   })
 
-
-
-
-  const clickedBtnPlay = (userData) => {
-    // debugger
-    _getUsers()
-    .then(res => console.log(res))
-    _getQuestions()
-    .then(res => console.log(res))
-    console.log(userData);
-    // debugger
-  }
-
   const handleLogin = (data) => {
     console.log(data);
     setLoggedInStatus("LOGGED_IN")

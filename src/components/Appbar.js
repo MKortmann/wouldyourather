@@ -28,8 +28,6 @@ const useStyles = makeStyles(theme => ({
 export default function DenseAppBar(props) {
   const classes = useStyles();
 
-  // const [isAuth, setIsAuth] = useState(false);
-
   let  componentToRender = (
       <React.Fragment>
         <Typography variant="h6" color="inherit" className={classes.tab} >
@@ -53,40 +51,12 @@ export default function DenseAppBar(props) {
             Leaderboard
           </Typography>
           <Typography variant="h6" color="inherit"  className={classes.login}>
+            <span> Welcome {JSON.parse(localStorage.getItem("authUser"))} </span>
             <span onClick={props.handleLogOut}>SignOut</span>
           </Typography>
         </React.Fragment>
       )
   }
-  //
-  // useEffect(()=> {
-  //   console.log(`[Logged.js]: use effect run`);
-    //
-    // if ( localStorage.getItem("authUser") !== null) {
-    //   setIsAuth(true);
-    //   console.log("app bar setted true");
-    // } else {
-    //   setIsAuth(false);
-    //   console.log("app bar setted false");
-    // }
-    // componentToRender = (
-    //     <React.Fragment>
-    //       <Typography variant="h6" color="inherit" className={classes.tab} >
-    //         Home
-    //       </Typography>
-    //       <Typography variant="h6" color="inherit" className={classes.tab}>
-    //         New Question
-    //       </Typography>
-    //       <Typography variant="h6" color="inherit" className={classes.tab}  >
-    //         Leaderboard
-    //       </Typography>
-    //       <Typography variant="h6" color="inherit"  className={classes.login}>
-    //         <span>SignOut</span>
-    //       </Typography>
-    //     </React.Fragment>
-    //   )
-  // })
-
 
 
   return (

@@ -49,7 +49,7 @@ const Checking = (props) => {
     props.handleLogin("LOGGED_IN")
     setTimeout(() => {
       props.history.push("/logged") //doing redirect here.
-    }, 3000)
+    }, 200)
 
 
   }
