@@ -25,6 +25,7 @@ const Checking = (props) => {
       _addUser(fullName)
         .then(res => console.log(res));
       setAuthUser(fullName);
+      handleSuccessfulAuth("ok");
     } else if (selectedUser !== null){
       // let's set the auth. User
       localStorage.clear();
