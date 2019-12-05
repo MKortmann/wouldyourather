@@ -19,13 +19,7 @@ const useStyles = makeStyles({
   }
 });
 
-// useEffect( () => {
-//   _getUsers()
-//   .then(res => console.log(res))
-//   _getQuestions()
-//   .then(res => console.log(res))
-//
-// })
+
 
 
 export default function Questions() {
@@ -34,7 +28,7 @@ export default function Questions() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="m">
+      <Container >
 
         <div className={classes.root} component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh'}}>
           <Question />

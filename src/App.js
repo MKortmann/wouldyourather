@@ -7,7 +7,7 @@ import Checking from "./containers/Checking";
 import Logged from "./containers/Logged";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import { withRouter } from 'react-router-dom';
-import { _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from "./_DATA";
+
 
 
 function App(props) {
@@ -23,8 +23,8 @@ function App(props) {
     // .then(res => console.log(res))
     // _getQuestions()
     // .then(res => console.log(res))
-    _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "marcelo"})
-    _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "marcelo"})
+    // _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "marcelo"})
+    // _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "marcelo"})
     // _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "marcelo"})
     // _saveQuestion({optionOneText: "use calm2", optionTwoText: "use halb2", author: "sarahedo"})
     // let's clear the localStorage
