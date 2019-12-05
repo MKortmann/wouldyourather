@@ -18,7 +18,6 @@ function button (props) {
     },
     margin: "5px",
     marginBottom: "20px"
-
   });
 
   return (

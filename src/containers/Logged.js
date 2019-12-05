@@ -47,20 +47,28 @@ const Logged = (props) => {
 
   }, [])
 
+
   const handleClickShowFlag = () => {
     setAnsweredQuestionsShowFlag(false);
-    alert("handleClickShowFlag")
   }
   const handleClickNotShowFlag = () => {
     setAnsweredQuestionsShowFlag(true);
-    alert("clicked")
   }
 
   return (
     <div>
       <br />
-      <Button clicked={handleClickShowFlag} label={"unanswered"} bgColor={"rgba(0,212,255,0.6)"}/>
-      <Button clicked={handleClickNotShowFlag} label={"answered"}  color={"white"}/>
+      { answeredQuestionsShowFlag ?
+      <React.Fragment>
+        <Button clicked={handleClickShowFlag} label={"unanswered"} color={"white"}/>
+        <Button clicked={handleClickNotShowFlag} label={"answered"} bgColor={"rgba(0,212,255,0.6)"} />
+      </React.Fragment>
+      :
+      <React.Fragment>
+        <Button clicked={handleClickShowFlag} label={"unanswered"}  bgColor={"rgba(0,212,255,0.6)"} />
+        <Button clicked={handleClickNotShowFlag} label={"answered"} color={"white"}/>
+      </React.Fragment>
+      }
       <Questions answeredQuestions={answeredQuestions}
         answeredQuestionsShowFlag={answeredQuestionsShowFlag}
         unansweredQuestions={unansweredQuestions}/>
