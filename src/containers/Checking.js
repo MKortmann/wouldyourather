@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import { withRouter } from 'react-router-dom';
 import {_addUser,  _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from "../_DATA";
+import Spinner from "../components/Spinner"
 
 
 const Checking = (props) => {
@@ -42,17 +43,18 @@ const Checking = (props) => {
   // })
 
   function handleSuccessfulAuth (status) {
-    debugger
+
     console.log(status);
     props.handleLogin("LOGGED_IN")
-    props.history.push("/logged") //doing redirect here.
+    setTimeout(() => {
+      props.history.push("/logged") //doing redirect here.
+    }, 3000)
+
 
   }
 
   return (
-    <div>
-      <h1>Checking!!!</h1>
-    </div>
+    <Spinner />
   )
 }
 

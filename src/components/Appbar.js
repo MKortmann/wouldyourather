@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function DenseAppBar() {
+export default function DenseAppBar(props) {
   const classes = useStyles();
 
   // const [isAuth, setIsAuth] = useState(false);
@@ -34,9 +34,30 @@ export default function DenseAppBar() {
       <React.Fragment>
         <Typography variant="h6" color="inherit" className={classes.tab} >
           Welcome to Would You Rather
+          {props.loggedInStatus}
         </Typography>
       </React.Fragment>
     )
+
+
+  if ( props.loggedInStatus === "LOGGED_IN")  {
+    componentToRender = (
+        <React.Fragment>
+          <Typography variant="h6" color="inherit" className={classes.tab} >
+            Home
+          </Typography>
+          <Typography variant="h6" color="inherit" className={classes.tab}>
+            New Question
+          </Typography>
+          <Typography variant="h6" color="inherit" className={classes.tab}  >
+            Leaderboard
+          </Typography>
+          <Typography variant="h6" color="inherit"  className={classes.login}>
+            <span onClick={props.handleLogOut}>SignOut</span>
+          </Typography>
+        </React.Fragment>
+      )
+  }
   //
   // useEffect(()=> {
   //   console.log(`[Logged.js]: use effect run`);

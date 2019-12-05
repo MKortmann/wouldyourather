@@ -6,11 +6,13 @@ import SignUp from "./components/SignUp";
 import Checking from "./containers/Checking";
 import Logged from "./containers/Logged";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import { _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from "./_DATA";
 
 
-function App() {
+function App(props) {
 
+  // install lifecycle hook
   const [loggedInStatus, setLoggedInStatus] = useState("NOT_LOGGED_IN");
 
 
@@ -51,14 +53,23 @@ function App() {
   }
 
   const handleLogin = (data) => {
-    debugger
     console.log(data);
+    setLoggedInStatus("LOGGED_IN")
+  }
+
+  const handleLogOut = () => {
+    console.log();
+    setLoggedInStatus("NOT_LOGGED_IN");
+    props.history.push("/") //doing redirect here.
   }
 
   return (
-    <BrowserRouter>
       <div className="App">
-        <Appbar />
+        <Route
+          path={"/"}
+          render = { props => (
+            <Appbar loggedInStatus={loggedInStatus} handleLogOut={handleLogOut}/>
+          )}/>
         <Switch>
         <Route
           exact
@@ -87,8 +98,7 @@ function App() {
         />
         </Switch>
       </div>
-    </BrowserRouter>
   );
 }
 
-export default App;
+export default withRouter(App);
