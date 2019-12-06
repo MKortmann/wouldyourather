@@ -7,14 +7,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Question from "../components/SingleQuestion"
+import Question from "../components/QuestionCard"
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles({
   root: {
     display: "flex",
-    alignItems: "center",
     flexDirection: "column",
   }
 });
@@ -22,19 +21,11 @@ const useStyles = makeStyles({
 export default function Questions(props) {
 
 
-
-  // useEffect( () => {
-  //
-  //   console.log(`[Questions]: ${props.answeredQuestions}`);
-  //   console.log(`[Not Answered Questions]: ${props.unansweredQuestions}`);
-  //
-  // }, [])
-
   let componentQuestions = null;
   if (props.answeredQuestions !== undefined) {
     componentQuestions = (
       props.answeredQuestions.map((item, index) => {
-        return(<Question item={item}/>)
+        return(<Question key={index} item={item}/>)
       })
     )
   }
@@ -46,7 +37,7 @@ export default function Questions(props) {
     <React.Fragment>
       <CssBaseline />
       <Container >
-      <div className={classes.root} component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh'}}>
+      <div className={classes.root} component="div" style={{ backgroundColor: '#cfe8fc'}}>
       {componentQuestions}
       </div>
       </Container>
