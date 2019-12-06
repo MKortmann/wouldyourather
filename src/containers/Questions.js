@@ -23,28 +23,22 @@ export default function Questions(props) {
 
 
 
-  useEffect( () => {
-
-    console.log(`[Questions]: ${props.answeredQuestions}`);
-    console.log(`[Not Answered Questions]: ${props.unansweredQuestions}`);
-
-  }, [])
-
+  // useEffect( () => {
+  //
+  //   console.log(`[Questions]: ${props.answeredQuestions}`);
+  //   console.log(`[Not Answered Questions]: ${props.unansweredQuestions}`);
+  //
+  // }, [])
 
   let componentQuestions = null;
-  if (props.answeredQuestionsShowFlag === true) {
+  if (props.answeredQuestions !== undefined) {
     componentQuestions = (
-        props.answeredQuestions.map((item, index) => {
-          return(<Question />)
-        })
-    )
-  } else {
-    componentQuestions = (
-        props.unansweredQuestions.map((item, index) => {
-          return(<Question />)
-        })
+      props.answeredQuestions.map((item, index) => {
+        return(<Question item={item}/>)
+      })
     )
   }
+
 
   const classes = useStyles();
 
@@ -54,7 +48,6 @@ export default function Questions(props) {
       <Container >
       <div className={classes.root} component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh'}}>
       {componentQuestions}
-
       </div>
       </Container>
     </React.Fragment>

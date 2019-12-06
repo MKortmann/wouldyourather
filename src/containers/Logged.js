@@ -19,6 +19,7 @@ const Logged = (props) => {
   useEffect( () => {
     const questionsAnsweredTemp = [];
     const questionsUnAnsweredTemp = [];
+    const authUser = JSON.parse(localStorage.getItem("authUser"))
 
     _getUsers()
       .then(res => {
@@ -31,7 +32,10 @@ const Logged = (props) => {
         const arrayQuestions = Object.values(res);
         arrayQuestions.forEach( (item, index) => {
           // check if the author of this questions is the logged authors
-          if ( arrayQuestions[index].author ===  JSON.parse(localStorage.getItem("authUser")) ) {
+          
+
+          if (  (arrayQuestions[index].optionOne.votes.indexOf(authUser) >= 0) ||
+                (arrayQuestions[index].optionTwo.votes.indexOf(authUser) >= 0) ) {
             questionsAnsweredTemp.push(item);
           } else {
             questionsUnAnsweredTemp.push(item);
@@ -62,16 +66,15 @@ const Logged = (props) => {
       <React.Fragment>
         <Button clicked={handleClickShowFlag} label={"unanswered"} color={"white"}/>
         <Button clicked={handleClickNotShowFlag} label={"answered"} bgColor={"rgba(0,212,255,0.6)"} />
+        <Questions answeredQuestions={answeredQuestions}/>
       </React.Fragment>
       :
       <React.Fragment>
         <Button clicked={handleClickShowFlag} label={"unanswered"}  bgColor={"rgba(0,212,255,0.6)"} />
         <Button clicked={handleClickNotShowFlag} label={"answered"} color={"white"}/>
+        <Questions answeredQuestions={unansweredQuestions}/>
       </React.Fragment>
       }
-      <Questions answeredQuestions={answeredQuestions}
-        answeredQuestionsShowFlag={answeredQuestionsShowFlag}
-        unansweredQuestions={unansweredQuestions}/>
     </div>
   )
 }

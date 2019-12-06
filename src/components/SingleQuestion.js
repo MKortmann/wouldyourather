@@ -14,17 +14,18 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SingleQuestion() {
+export default function SingleQuestion(props) {
   const classes = useStyles();
 
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
+        <Typography>
+        <p>{props.item.author} asked:</p>
+        <p>Time: {props.item.timestamp}</p>
+
+
+        </Typography>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             Lizard
