@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -16,6 +16,8 @@ const useStyles = makeStyles({
     minWidth: "320px"
   },
 });
+
+
 
 const buttonStyle = {
     background: 'rgba(0,212,255,0.6)',
@@ -42,8 +44,7 @@ export default function SingleQuestion(props) {
   const data = props.item.timestamp;
   let ts = new Date(props.item.timestamp);
 
-
-  return (
+  let componentCard = (
     <Card className={classes.card}>
       <CardActionArea style={{cursor: "pointer"}}>
         <div>
@@ -60,7 +61,41 @@ export default function SingleQuestion(props) {
           </div>
         </CardContent>
       </CardActionArea>
-        <Link to={{ pathname: "/singleQuestion", state: {item: props.item}}} style={buttonStyle}>View Question</Link>
     </Card>
+  )
+
+
+  if ( showCard ) {
+    debugger
+    componentCard = (
+      <Card className={classes.card}>
+        <CardActionArea style={{cursor: "pointer"}}>
+          <div>
+            <p style={{color: "rgba(255, 105, 135)"}}>Author: {props.item.author}</p>
+            <p>Time: {ts.toDateString()}</p>
+          </div>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              Would You Rather...
+            </Typography>
+            <div>
+              <p>{props.item.optionOne.text}</p>
+              <p>{props.item.optionTwo.text}</p>
+            </div>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    )  }
+
+  const changeState = () => {
+    setShowCard(true);
+    console.log(showCard);
+  }
+
+  return (
+    <React.Fragment>
+      { componentCard }
+      <Button label={"View Question"} clicked={changeState}/>
+    </React.Fragment>
   );
 }
