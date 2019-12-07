@@ -32,8 +32,6 @@ const Root = (props) => {
         const arrayQuestions = Object.values(res);
         arrayQuestions.forEach( (item, index) => {
           // check if the author of this questions is the logged authors
-
-
           if (  (arrayQuestions[index].optionOne.votes.indexOf(authUser) >= 0) ||
                 (arrayQuestions[index].optionTwo.votes.indexOf(authUser) >= 0) ) {
             questionsAnsweredTemp.push(item);

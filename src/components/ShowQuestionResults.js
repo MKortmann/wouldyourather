@@ -83,7 +83,11 @@ const ShowQuestion = (props) => {
 
       // SAVING THE QUESTION
       // _saveQuestionAnswer ({ authedUser, qid, answer }) {
-      _saveQuestionAnswer ({  authedUser: props.questions[props.match.params.question_id].author,
+      debugger
+      // _saveQuestionAnswer ({  authedUser: props.questions[props.match.params.question_id].author,
+      //                         qid: props.match.params.question_id,
+      //                         answer: option} );
+      _saveQuestionAnswer ({  authedUser: JSON.parse(localStorage.getItem("authUser")),
                               qid: props.match.params.question_id,
                               answer: option} );
       // GET THE TOTAL NUMBER OF Votes

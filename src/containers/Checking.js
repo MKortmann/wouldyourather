@@ -10,6 +10,7 @@ const Checking = (props) => {
 
   // get the data from localStorage
   useEffect(() => {
+    debugger
     const fullName = JSON.parse(localStorage.getItem("fullName"));
     const userName = JSON.parse(localStorage.getItem("userName"));
     const eMail = JSON.parse(localStorage.getItem("eMail"));
@@ -30,7 +31,7 @@ const Checking = (props) => {
       // let's set the auth. User
       localStorage.clear();
       localStorage.setItem("authUser", JSON.stringify(selectedUser))
-      setAuthUser(fullName);
+      setAuthUser(selectedUser);
       handleSuccessfulAuth("ok");
 
     } else {
