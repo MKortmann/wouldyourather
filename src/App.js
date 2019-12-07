@@ -4,6 +4,7 @@ import Appbar from "./components/Appbar";
 import Welcome from "./components/Welcome";
 import SignUp from "./components/SignUp";
 import ShowQuestion from "./components/ShowQuestion";
+import ShowQuestionResults from "./components/ShowQuestionResults";
 import Checking from "./containers/Checking";
 import Root from "./containers/Root";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
@@ -85,6 +86,12 @@ function App(props) {
           path={"/root/questions/"}
           render = { props => (
             <Root loggedInStatus={loggedInStatus}/>
+          )}
+        />
+        <Route
+          path={"/root/questions/:question_id/:answer"}
+          render = { (props) => (
+            <ShowQuestionResults {...props} questions={questions} user={users} loggedInStatus={loggedInStatus} />
           )}
         />
         <Route
