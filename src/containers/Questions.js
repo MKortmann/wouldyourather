@@ -25,7 +25,7 @@ export default function Questions(props) {
   if (props.answeredQuestions !== undefined) {
     componentQuestions = (
       props.answeredQuestions.map((item, index) => {
-        return(<Question key={index} item={item} users={props.users}/>)
+        return(<Question key={item.id} item={item} users={props.users}/>)
       })
     )
   }

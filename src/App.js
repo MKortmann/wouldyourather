@@ -3,10 +3,12 @@ import './App.css';
 import Appbar from "./components/Appbar";
 import Welcome from "./components/Welcome";
 import SignUp from "./components/SignUp";
+import ShowQuestion from "./components/ShowQuestion";
 import Checking from "./containers/Checking";
 import Root from "./containers/Root";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import { withRouter } from 'react-router-dom';
+import { _getUsers, _getQuestions} from "./_DATA";
 
 
 
@@ -15,25 +17,26 @@ function App(props) {
   // install lifecycle hook
   const [loggedInStatus, setLoggedInStatus] = useState("NOT_LOGGED_IN");
 
+  // state for user and questions
+  const [questions, setQuestions] = useState(null);
+  const [users, setUsers] = useState(null);
 
   // Here we load all the users and questions
   useEffect( () => {
-    // _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "Marcelo"})
-    // _getUsers()
-    // .then(res => console.log(res))
-    // _getQuestions()
-    // .then(res => console.log(res))
-    // _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "marcelo"})
-    // _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "marcelo"})
-    // _saveQuestion({optionOneText: "use calm", optionTwoText: "use halb", author: "marcelo"})
-    // _saveQuestion({optionOneText: "use calm2", optionTwoText: "use halb2", author: "sarahedo"})
-    // let's clear the localStorage
     localStorage.clear();
+    _getUsers()
+      .then(res => {
+        setUsers(res);
+      })
+
+    _getQuestions()
+      .then( res => {
+        setQuestions(res);
+      })
 
   }, [])
 
   useEffect( () => {
-
 
     console.log(`[App.js]: use effect run`);
 
@@ -86,8 +89,8 @@ function App(props) {
         />
         <Route
           path={"/root/questions/:question_id"}
-          render = { props => (
-            "HELLO WORLD!"
+          render = { (props) => (
+            <ShowQuestion {...props} questions={questions} user={users} loggedInStatus={loggedInStatus} />
           )}
         />
         </Switch>
