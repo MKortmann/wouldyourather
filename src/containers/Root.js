@@ -4,7 +4,7 @@ import Questions from "./Questions";
 import Button from "../components/Button";
 import { _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from "../_DATA";
 
-const Logged = (props) => {
+const Root = (props) => {
 
   const [ answeredQuestionsShowFlag, setAnsweredQuestionsShowFlag ] = useState(false);
 
@@ -79,4 +79,4 @@ const Logged = (props) => {
   )
 }
 
-export default withRouter(Logged);
+export default withRouter(Root);

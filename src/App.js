@@ -78,9 +78,16 @@ function App(props) {
           )}
         />
         <Route
-          path={"/root/questions"}
+          exact
+          path={"/root/questions/"}
           render = { props => (
             <Root loggedInStatus={loggedInStatus}/>
+          )}
+        />
+        <Route
+          path={"/root/questions/:question_id"}
+          render = { props => (
+            "HELLO WORLD!"
           )}
         />
         </Switch>

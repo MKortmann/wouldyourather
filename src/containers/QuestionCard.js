@@ -11,6 +11,7 @@ import SVGtylermcginnis from "../avatars/tylermcginnis.svg";
 import SVGsarahedo from "../avatars/sarahedo.svg";
 import SVGjohndoe from "../avatars/johndoe.svg";
 import SVGmarcelo from "../avatars/johndoe.svg";
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles({
   card: {
@@ -36,7 +37,7 @@ const buttonStyle = {
     marginBottom: "20px"
   }
 
-export default function SingleQuestion(props) {
+function QuestionCard(props) {
   const classes = useStyles();
 
   const [showCard, setShowCard] = useState(false);
@@ -103,6 +104,7 @@ export default function SingleQuestion(props) {
   const changeState = () => {
     setShowCard(true);
     console.log(showCard);
+    props.history.push("/root/questions/456123456") //doing redirect here.
   }
 
   return (
@@ -112,3 +114,5 @@ export default function SingleQuestion(props) {
     </React.Fragment>
   );
 }
+
+export default withRouter(QuestionCard);
