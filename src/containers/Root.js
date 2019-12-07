@@ -32,7 +32,7 @@ const Logged = (props) => {
         const arrayQuestions = Object.values(res);
         arrayQuestions.forEach( (item, index) => {
           // check if the author of this questions is the logged authors
-          
+
 
           if (  (arrayQuestions[index].optionOne.votes.indexOf(authUser) >= 0) ||
                 (arrayQuestions[index].optionTwo.votes.indexOf(authUser) >= 0) ) {
@@ -72,7 +72,7 @@ const Logged = (props) => {
       <React.Fragment>
         <Button clicked={handleClickShowFlag} label={"unanswered"}  bgColor={"rgba(0,212,255,0.6)"} />
         <Button clicked={handleClickNotShowFlag} label={"answered"} color={"white"}/>
-        <Questions answeredQuestions={unansweredQuestions}/>
+        <Questions users={users} answeredQuestions={unansweredQuestions}/>
       </React.Fragment>
       }
     </div>

@@ -4,7 +4,7 @@ import Appbar from "./components/Appbar";
 import Welcome from "./components/Welcome";
 import SignUp from "./components/SignUp";
 import Checking from "./containers/Checking";
-import Logged from "./containers/Logged";
+import Root from "./containers/Root";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 
@@ -78,9 +78,9 @@ function App(props) {
           )}
         />
         <Route
-          path={"/logged"}
+          path={"/root/questions"}
           render = { props => (
-            <Logged loggedInStatus={loggedInStatus}/>
+            <Root loggedInStatus={loggedInStatus}/>
           )}
         />
         </Switch>

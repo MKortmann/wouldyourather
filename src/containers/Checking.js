@@ -48,7 +48,7 @@ const Checking = (props) => {
     console.log(status);
     props.handleLogin("LOGGED_IN")
     setTimeout(() => {
-      props.history.push("/logged") //doing redirect here.
+      props.history.push("/root/questions") //doing redirect here.
     }, 200)
 
 

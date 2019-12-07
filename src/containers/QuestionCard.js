@@ -5,9 +5,12 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from './Button';
+import Button from '../components/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from "react-router-dom";
+import SVGtylermcginnis from "../avatars/tylermcginnis.svg";
+import SVGsarahedo from "../avatars/sarahedo.svg";
+import SVGjohndoe from "../avatars/johndoe.svg";
+import SVGmarcelo from "../avatars/johndoe.svg";
 
 const useStyles = makeStyles({
   card: {
@@ -16,8 +19,6 @@ const useStyles = makeStyles({
     minWidth: "320px"
   },
 });
-
-
 
 const buttonStyle = {
     background: 'rgba(0,212,255,0.6)',
@@ -64,15 +65,27 @@ export default function SingleQuestion(props) {
     </Card>
   )
 
+  let componentAvatar = "";
+  switch (props.item.author) {
+    case "sarahedo":
+      componentAvatar = SVGsarahedo;
+    break;
+    case "tylermcginnis":
+      componentAvatar = SVGtylermcginnis;
+    break;
+    case "johndoe":
+      componentAvatar = SVGjohndoe;
+    break;
+    default:
+      componentAvatar = SVGmarcelo;
+  }
 
   if ( showCard ) {
-    debugger
     componentCard = (
       <Card className={classes.card}>
         <CardActionArea style={{cursor: "pointer"}}>
           <div>
-            <p style={{color: "rgba(255, 105, 135)"}}>Author: {props.item.author}</p>
-            <p>Time: {ts.toDateString()}</p>
+            <img style={{maxWidth: "96px"}} src={componentAvatar} alt={"Avatar Logo"}/>
           </div>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">

@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Question from "../components/QuestionCard"
+import Question from "./QuestionCard"
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
@@ -25,7 +25,7 @@ export default function Questions(props) {
   if (props.answeredQuestions !== undefined) {
     componentQuestions = (
       props.answeredQuestions.map((item, index) => {
-        return(<Question key={index} item={item}/>)
+        return(<Question key={index} item={item} users={props.users}/>)
       })
     )
   }
