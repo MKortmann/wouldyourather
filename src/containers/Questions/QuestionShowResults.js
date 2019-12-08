@@ -4,12 +4,12 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import SVGtylermcginnis from "../avatars/tylermcginnis.svg";
-import SVGsarahedo from "../avatars/sarahedo.svg";
-import SVGjohndoe from "../avatars/johndoe.svg";
-import SVGmarcelo from "../avatars/johndoe.svg";
+import SVGtylermcginnis from "../../avatars/tylermcginnis.svg";
+import SVGsarahedo from "../../avatars/sarahedo.svg";
+import SVGjohndoe from "../../avatars/johndoe.svg";
+import SVGmarcelo from "../../avatars/johndoe.svg";
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Button from "./Button";
+import Button from "../../components/Button";
 import Checkbox from '@material-ui/core/Checkbox';
 import { Link } from "react-router-dom";
 
@@ -18,9 +18,9 @@ import Grid from '@material-ui/core/Grid';
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import { _saveQuestionAnswer} from "../_DATA";
+import { _saveQuestionAnswer} from "../../_DATA";
 
-const ShowQuestion = (props) => {
+const QuestionShowResults = (props) => {
 
   const useStyles = makeStyles( theme => ({
     root: {
@@ -83,7 +83,7 @@ const ShowQuestion = (props) => {
 
       // SAVING THE QUESTION
       // _saveQuestionAnswer ({ authedUser, qid, answer }) {
-      debugger
+
       // _saveQuestionAnswer ({  authedUser: props.questions[props.match.params.question_id].author,
       //                         qid: props.match.params.question_id,
       //                         answer: option} );
@@ -176,7 +176,7 @@ const ShowQuestion = (props) => {
   return (
     <React.Fragment>
       {componentCard}
-      <Link to={`/root/questions/`} style={buttonStyle}>Back</Link>
+      <Link to={`/questions/`} style={buttonStyle}>Back</Link>
     </React.Fragment>
   )
 }
@@ -197,4 +197,4 @@ const buttonStyle = {
   marginBottom: "20px"
 }
 
-export default ShowQuestion;
+export default QuestionShowResults;

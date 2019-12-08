@@ -10,7 +10,7 @@ const Checking = (props) => {
 
   // get the data from localStorage
   useEffect(() => {
-    debugger
+
     const fullName = JSON.parse(localStorage.getItem("fullName"));
     const userName = JSON.parse(localStorage.getItem("userName"));
     const eMail = JSON.parse(localStorage.getItem("eMail"));
@@ -49,7 +49,7 @@ const Checking = (props) => {
     console.log(status);
     props.handleLogin("LOGGED_IN")
     setTimeout(() => {
-      props.history.push("/root/questions") //doing redirect here.
+      props.history.push("/questions") //doing redirect here.
     }, 200)
 
 

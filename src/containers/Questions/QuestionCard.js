@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '../components/Button';
+import Button from '../../components/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
 // import { withRouter } from 'react-router-dom';
@@ -60,20 +60,10 @@ function QuestionCard(props) {
     </Card>
   )
 
-
-
-
-  // const changeState = () => {
-  //   setShowCard(true);
-  //   console.log(showCard);
-  //   props.history.push(`/root/questions/${props.item.id}`) //doing redirect here.
-  //
-  // }
-
   return (
     <React.Fragment>
       { componentCard }
-      <Link to={`/root/questions/${props.item.id}`} style={buttonStyle}>View Question</Link>
+      <Link to={`/questions/${props.item.id}`} style={buttonStyle}>View Question</Link>
     </React.Fragment>
   );
 }

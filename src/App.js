@@ -3,8 +3,8 @@ import './App.css';
 import Appbar from "./components/Appbar";
 import Welcome from "./components/Welcome";
 import SignUp from "./components/SignUp";
-import ShowQuestion from "./components/ShowQuestion";
-import ShowQuestionResults from "./components/ShowQuestionResults";
+import QuestionShow from "./containers/Questions/QuestionShow";
+import QuestionShowResults from "./containers/Questions/QuestionShowResults";
 import Checking from "./containers/Checking";
 import Root from "./containers/Root";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
@@ -55,53 +55,61 @@ function App(props) {
   }
 
   return (
-      <div className="App">
-        <Route
-          path={"/"}
-          render = { props => (
-            <Appbar loggedInStatus={loggedInStatus} handleLogOut={handleLogOut}/>
-          )}/>
-        <Switch>
-        <Route
-          exact
-          path={"/"}
-          render = { props => (
-            <Welcome loggedInStatus={loggedInStatus}/>
-          )}
-        />
-        <Route
-          path={"/signUp"}
-          render = { props => (
-            <SignUp loggedInStatus={loggedInStatus}/>
-          )}
-        />
-        <Route
-          path={"/checking"}
-          render = { props => (
-            <Checking handleLogin={handleLogin} loggedInStatus={loggedInStatus}/>
-          )}
-        />
-        <Route
-          exact
-          path={"/root/questions/"}
-          render = { props => (
-            <Root loggedInStatus={loggedInStatus}/>
-          )}
-        />
-        <Route
-          path={"/root/questions/:question_id/:answer"}
-          render = { (props) => (
-            <ShowQuestionResults {...props} questions={questions} user={users} loggedInStatus={loggedInStatus} />
-          )}
-        />
-        <Route
-          path={"/root/questions/:question_id"}
-          render = { (props) => (
-            <ShowQuestion {...props} questions={questions} user={users} loggedInStatus={loggedInStatus} />
-          )}
-        />
-        </Switch>
-      </div>
+    <div className="App">
+
+    <Appbar loggedInStatus={loggedInStatus} handleLogOut={handleLogOut}/>
+
+    <Switch>
+
+      { loggedInStatus === "NOT_LOGGED_IN" ?
+
+      <Route
+        exact
+        path={"/"}
+        render = { props => (
+          <Welcome loggedInStatus={loggedInStatus}/>
+        )}
+      />
+
+      :
+
+      <Route
+        exact
+        path={"/questions/"}
+        render = { props => (
+          <Root loggedInStatus={loggedInStatus}/>
+        )}
+      />
+      }
+
+      <Route
+        path={"/signUp"}
+        render = { props => (
+          <SignUp loggedInStatus={loggedInStatus}/>
+        )}
+      />
+
+      <Route
+        path={"/checking"}
+        render = { props => (
+          <Checking handleLogin={handleLogin} loggedInStatus={loggedInStatus}/>
+        )}
+      />
+
+      <Route
+        path={"/questions/:question_id/:answer"}
+        render = { (props) => (
+          <QuestionShowResults {...props} questions={questions} user={users} loggedInStatus={loggedInStatus} />
+        )}
+      />
+      <Route
+        path={"/questions/:question_id"}
+        render = { (props) => (
+          <QuestionShow {...props} questions={questions} user={users} loggedInStatus={loggedInStatus} />
+        )}
+      />
+      </Switch>
+    </div>
   );
 }
 

@@ -32,7 +32,6 @@ export default function DenseAppBar(props) {
       <React.Fragment>
         <Typography variant="h6" color="inherit" className={classes.tab} >
           Welcome to Would You Rather
-          {props.loggedInStatus}
         </Typography>
       </React.Fragment>
     )
@@ -57,7 +56,6 @@ export default function DenseAppBar(props) {
         </React.Fragment>
       )
   }
-
 
   return (
     <div className={classes.root}>

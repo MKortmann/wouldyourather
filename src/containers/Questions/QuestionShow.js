@@ -4,11 +4,11 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import SVGtylermcginnis from "../avatars/tylermcginnis.svg";
-import SVGsarahedo from "../avatars/sarahedo.svg";
-import SVGjohndoe from "../avatars/johndoe.svg";
-import SVGmarcelo from "../avatars/johndoe.svg";
-import Button from "./Button";
+import SVGtylermcginnis from "../../avatars/tylermcginnis.svg";
+import SVGsarahedo from "../../avatars/sarahedo.svg";
+import SVGjohndoe from "../../avatars/johndoe.svg";
+import SVGmarcelo from "../../avatars/johndoe.svg";
+import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 
 
@@ -18,7 +18,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-const ShowQuestion = (props) => {
+const QuestionShow = (props) => {
 
   const useStyles = makeStyles( theme => ({
     card: {
@@ -87,7 +87,7 @@ const ShowQuestion = (props) => {
   return (
     <React.Fragment>
       {componentCard}
-      <Link to={`/root/questions/${props.match.params.question_id}/${value}`} style={buttonStyle}>Vote</Link>
+      <Link to={`/questions/${props.match.params.question_id}/${value}`} style={buttonStyle}>Vote</Link>
     </React.Fragment>
   )
 }
@@ -108,4 +108,4 @@ const buttonStyle = {
   marginBottom: "20px"
 }
 
-export default ShowQuestion;
+export default QuestionShow;

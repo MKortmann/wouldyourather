@@ -53,7 +53,6 @@ export default function ServerModal(props) {
       >
         <div className={classes.paper}>
           <h2 id="server-modal-title">Welcome To Would You Rather</h2>
-          <p> {props.loggedInStatus}</p>
           <Select select={props.select} authUser={props.authUser}/>
           <hr/><br/>
           <Link to="/checking" style={buttonStyle} >SignIn</Link>
