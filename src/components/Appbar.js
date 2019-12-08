@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MKLogo from '../icons/mk.svg';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,7 +45,7 @@ export default function DenseAppBar(props) {
             Home
           </Typography>
           <Typography variant="h6" color="inherit" className={classes.tab}>
-            New Question
+            <Link to="/newQuestion" style={{textDecoration: "none", color: "white"}}>New Question</Link>
           </Typography>
           <Typography variant="h6" color="inherit" className={classes.tab}  >
             Leaderboard
@@ -68,3 +69,19 @@ export default function DenseAppBar(props) {
     </div>
   );
 }
+
+const buttonStyle = {
+    background: 'rgba(0,212,255,0.6)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'black',
+    height: 48,
+    padding: 10,
+    textDecoration: "none",
+    "&:hover": {
+      background: "rgba(255, 105, 135, .5)",
+    },
+    margin: "5px",
+    marginBottom: "20px"
+  }

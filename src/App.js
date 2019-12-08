@@ -5,6 +5,7 @@ import Welcome from "./components/Welcome";
 import SignUp from "./components/SignUp";
 import QuestionShow from "./containers/Questions/QuestionShow";
 import QuestionShowResults from "./containers/Questions/QuestionShowResults";
+import QuestionSubmit from "./containers/NewQuestion/QuestionSubmit";
 import Checking from "./containers/Checking";
 import Root from "./containers/Root";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
@@ -86,6 +87,13 @@ function App(props) {
         path={"/signUp"}
         render = { props => (
           <SignUp loggedInStatus={loggedInStatus}/>
+        )}
+      />
+
+      <Route
+        path={"/newQuestion"}
+        render = { props => (
+          <QuestionSubmit loggedInStatus={loggedInStatus}/>
         )}
       />
 

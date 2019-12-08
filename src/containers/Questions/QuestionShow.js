@@ -20,6 +20,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 const QuestionShow = (props) => {
 
+  //  MAYBE WE NEED TO GET ALL THE QUESTIONS AGAIN... I think it will not update...
+  // TO BE CHECKED!
   const useStyles = makeStyles( theme => ({
     card: {
       margin: "30px",

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import Input from "./Input";
-import Button from "./Button";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ServerModal(props) {
+function QuestionSubmit (props) {
   const classes = useStyles();
   const rootRef = React.useRef(null);
 
@@ -52,19 +52,19 @@ export default function ServerModal(props) {
         container={() => rootRef.current}
       >
         <div className={classes.paper}>
-          <h2 id="server-modal-title">Welcome To Would You Rather</h2>
-          <p id="server-modal-description">Please login to start to play</p>
-          <Input label={"Please, enter your full name"} elem={"fullName"} />
-          <Input label={"Please, enter your user name"} elem={"userName"}/>
-          <Input label={"Please, enter your E-Mail"} elem={"eMail"}/>
-          <Link to="/"  style={buttonStyle}>Back</Link>
-          <Link to="/Checking/"  style={buttonStyle}>Play</Link>
+          <h2 id="server-modal-title">Would You Rather...</h2>
+          <p id="server-modal-description">Please, fill out the two possible options bellow!</p>
+          <Input label={"First Option"} />
+          <Input label={"Second Option"} />
+          <Link to="/questions/submit"  style={buttonStyle}>Submit Question</Link>
+          <Link to="/questions/"  style={buttonStyle}>Back</Link>
         </div>
       </Modal>
     </div>
   );
 }
 
+export default QuestionSubmit;
 
 const buttonStyle = {
     background: 'rgba(0,212,255,0.6)',
