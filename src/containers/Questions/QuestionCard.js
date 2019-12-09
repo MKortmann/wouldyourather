@@ -1,18 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
+import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
-  card: {
-    margin: "30px",
-    marginBottom: "0px",
-    minHeight: "200px",
-    minWidth: "320px"
-  },
+
 });
 
 const buttonStyle = {
@@ -28,7 +22,8 @@ const buttonStyle = {
     "&:hover": {
       background: "rgba(255, 105, 135, .5)",
     },
-    margin: "5px"
+    margin: "5px",
+    marginBottom: "20px"
   }
 
 function QuestionCard(props) {
@@ -40,23 +35,21 @@ function QuestionCard(props) {
   let ts = new Date(props.item.timestamp);
 
   let componentCard = (
-    <Card className={classes.card}>
-      <CardActionArea style={{cursor: "pointer"}}>
-        <div>
-          <p style={{color: "rgba(255, 105, 135)"}}>Author: {props.item.author}</p>
-          <p>Time: {ts.toDateString()}</p>
-        </div>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Would You Rather...
-          </Typography>
+    <Container>
+      <Paper style={{padding: "10px", marginTop: "10px"}}>
+          <div>
+            <p style={{color: "rgba(255, 105, 135)"}}>Author: {props.item.author}</p>
+            <p>Time: {ts.toDateString()}</p>
+          </div>
+            <Typography gutterBottom variant="h5" component="h2">
+              Would You Rather...
+            </Typography>
           <div color="textSecondary" style={{backgroundColor: "lightblue"}}>
             <p style={{opacity: "0.5", transform: "scale(-1,1)"}}>{props.item.optionOne.text}{props.item.optionOne.text}{props.item.optionOne.text}</p>
             <p style={{opacity: "0.5", transform: "scale(-1,1)"}}>{props.item.optionTwo.text}{props.item.optionTwo.text}{props.item.optionTwo.text}</p>
           </div>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+      </Paper>
+    </Container>
   )
 
   return (

@@ -28,7 +28,7 @@ function Questions(props) {
   return (
     <React.Fragment>
       <Container >
-      <div className={classes.root} component="div" style={{ backgroundColor: '#cfe8fc'}}>
+      <div className={classes.root} style={{ backgroundColor: '#cfe8fc'}}>
       {componentQuestions}
       </div>
       </Container>

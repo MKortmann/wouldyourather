@@ -4,12 +4,14 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import SVGtylermcginnis from "../../avatars/tylermcginnis.svg";
 import SVGsarahedo from "../../avatars/sarahedo.svg";
 import SVGjohndoe from "../../avatars/johndoe.svg";
 import SVGmarcelo from "../../avatars/johndoe.svg";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
+import Container from '@material-ui/core/Container';
 
 
 import Radio from '@material-ui/core/Radio';
@@ -25,8 +27,7 @@ import FormLabel from '@material-ui/core/FormLabel';
     card: {
       margin: "30px",
       minHeight: "250px",
-      minWidth: "320px",
-    },
+      minWidth: "320px",    },
   });
 
   const buttonStyle = {
@@ -103,10 +104,13 @@ import FormLabel from '@material-ui/core/FormLabel';
   }
 
   return (
-    <React.Fragment>
+    <Container style={{marginTop: "20px"}}>
+    <div className={classes.root} style={{ backgroundColor: '#cfe8fc', paddingTop: "10px", paddingBottom: "30px"}}>
       {componentCard}
       <Link to={`/questions/${props.match.params.question_id}/${value}`} style={buttonStyle}>Vote</Link>
-    </React.Fragment>
+    </div>
+    </Container>
+
   )
 }
 
