@@ -19,15 +19,15 @@ import Grid from '@material-ui/core/Grid';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { _saveQuestionAnswer} from "../../_DATA";
+import Container from '@material-ui/core/Container';
 
 const QuestionShowResults = (props) => {
 
   const useStyles = makeStyles({
     card: {
-      margin: "auto",
+      margin: "30px",
       minHeight: "250px",
       minWidth: "320px",
-      maxWidth: '70%',
     }
   });
 
@@ -166,10 +166,12 @@ const QuestionShowResults = (props) => {
   }
 
   return (
-    <React.Fragment>
-      {componentCard}
-      <Link to={`/questions/`} style={buttonStyle}>Back</Link>
-    </React.Fragment>
+    <Container style={{marginTop: "20px"}}>
+      <div className={classes.root} style={{ backgroundColor: '#cfe8fc', paddingTop: "10px", paddingBottom: "30px"}}>
+        {componentCard}
+        <Link to={`/questions/`} style={buttonStyle}>Back</Link>
+      </div>
+    </Container>
   )
 }
 

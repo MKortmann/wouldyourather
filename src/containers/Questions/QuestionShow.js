@@ -27,7 +27,8 @@ import FormLabel from '@material-ui/core/FormLabel';
     card: {
       margin: "30px",
       minHeight: "250px",
-      minWidth: "320px",    },
+      minWidth: "320px",
+    },
   });
 
   const buttonStyle = {
@@ -77,28 +78,26 @@ import FormLabel from '@material-ui/core/FormLabel';
 
     componentCard = (
       <Card className={classes.card}>
-        <CardActionArea style={{cursor: "pointer"}}>
-          <img style={{maxWidth: "96px"}} src={componentAvatar} alt={"Avatar Logo"}/>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-                {props.questions[props.match.params.question_id].author}
-            </Typography>
-            <hr />
-            <FormControl component="fieldset" className={classes.formControl}>
-              <FormLabel component="legend"> <h2>Would You Rather...</h2></FormLabel>
-              <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                <FormControlLabel
-                  control={<Radio color="primary"/>}
-                  value={props.questions[props.match.params.question_id].optionOne.text}
-                  label={props.questions[props.match.params.question_id].optionOne.text} />
-                <FormControlLabel
-                  control={<Radio />}
-                  value={props.questions[props.match.params.question_id].optionTwo.text}
-                  label={props.questions[props.match.params.question_id].optionTwo.text} />
-              </RadioGroup>
-            </FormControl>
-          </CardContent>
-        </CardActionArea>
+        <img style={{maxWidth: "96px"}} src={componentAvatar} alt={"Avatar Logo"}/>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+              {props.questions[props.match.params.question_id].author}
+          </Typography>
+          <hr />
+          <FormControl component="fieldset" className={classes.formControl}>
+            <FormLabel component="legend"> <h2>Would You Rather...</h2></FormLabel>
+            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+              <FormControlLabel
+                control={<Radio color="primary"/>}
+                value={props.questions[props.match.params.question_id].optionOne.text}
+                label={props.questions[props.match.params.question_id].optionOne.text} />
+              <FormControlLabel
+                control={<Radio />}
+                value={props.questions[props.match.params.question_id].optionTwo.text}
+                label={props.questions[props.match.params.question_id].optionTwo.text} />
+            </RadioGroup>
+          </FormControl>
+        </CardContent>
       </Card>
     )
   }
