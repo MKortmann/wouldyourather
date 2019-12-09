@@ -22,22 +22,14 @@ import { _saveQuestionAnswer} from "../../_DATA";
 
 const QuestionShowResults = (props) => {
 
-  const useStyles = makeStyles( theme => ({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
+  const useStyles = makeStyles({
     card: {
-      margin: "30px",
+      margin: "auto",
       minHeight: "250px",
       minWidth: "320px",
-    },
-    formControl: {
-      margin: theme.spacing(3),
-    },
-  }));
+      maxWidth: '70%',
+    }
+  });
 
   const classes = useStyles();
 

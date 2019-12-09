@@ -62,8 +62,6 @@ function App(props) {
 
     <Switch>
 
-      { loggedInStatus === "NOT_LOGGED_IN" ?
-
       <Route
         exact
         path={"/"}
@@ -72,7 +70,7 @@ function App(props) {
         )}
       />
 
-      :
+
 
       <Route
         exact
@@ -81,7 +79,7 @@ function App(props) {
           <Root loggedInStatus={loggedInStatus}/>
         )}
       />
-      }
+
 
       <Route
         path={"/signUp"}

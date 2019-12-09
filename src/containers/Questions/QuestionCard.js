@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '../../components/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
-// import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles({
   card: {
     margin: "30px",
-    minHeight: "250px",
+    marginBottom: "0px",
+    minHeight: "200px",
     minWidth: "320px"
   },
 });
@@ -21,15 +20,15 @@ const buttonStyle = {
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'black',
+    color: 'white',
+    fontSize: "30px",
     height: 48,
-    padding: 10,
+    padding: 0,
     textDecoration: "none",
     "&:hover": {
       background: "rgba(255, 105, 135, .5)",
     },
-    margin: "5px",
-    marginBottom: "20px"
+    margin: "5px"
   }
 
 function QuestionCard(props) {

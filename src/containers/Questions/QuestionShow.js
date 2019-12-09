@@ -18,20 +18,34 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-const QuestionShow = (props) => {
 
   //  MAYBE WE NEED TO GET ALL THE QUESTIONS AGAIN... I think it will not update...
   // TO BE CHECKED!
-  const useStyles = makeStyles( theme => ({
+  const useStyles = makeStyles({
     card: {
       margin: "30px",
       minHeight: "250px",
-      minWidth: "320px"
+      minWidth: "320px",
     },
-    formControl: {
-      margin: theme.spacing(3),
-    },
-  }));
+  });
+
+  const buttonStyle = {
+      background: 'rgba(0,212,255,0.6)',
+      border: 0,
+      borderRadius: 3,
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      color: 'black',
+      height: 48,
+      padding: 10,
+      textDecoration: "none",
+      "&:hover": {
+        background: "rgba(255, 105, 135, .5)",
+      },
+      margin: "5px",
+      marginBottom: "20px"
+    }
+
+  const QuestionShow = (props) => {
 
   const classes = useStyles();
 
@@ -62,6 +76,7 @@ const QuestionShow = (props) => {
 
     componentCard = (
       <Card className={classes.card}>
+        <CardActionArea style={{cursor: "pointer"}}>
           <img style={{maxWidth: "96px"}} src={componentAvatar} alt={"Avatar Logo"}/>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
@@ -82,6 +97,7 @@ const QuestionShow = (props) => {
               </RadioGroup>
             </FormControl>
           </CardContent>
+        </CardActionArea>
       </Card>
     )
   }
@@ -92,22 +108,6 @@ const QuestionShow = (props) => {
       <Link to={`/questions/${props.match.params.question_id}/${value}`} style={buttonStyle}>Vote</Link>
     </React.Fragment>
   )
-}
-
-const buttonStyle = {
-  background: 'rgba(0,212,255,0.6)',
-  border: 0,
-  borderRadius: 3,
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-  color: 'black',
-  height: 48,
-  padding: 10,
-  textDecoration: "none",
-  "&:hover": {
-    background: "rgba(255, 105, 135, .5)",
-  },
-  margin: "5px",
-  marginBottom: "20px"
 }
 
 export default QuestionShow;
