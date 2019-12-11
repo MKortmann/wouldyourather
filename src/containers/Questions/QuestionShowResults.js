@@ -9,9 +9,9 @@ import SVGsarahedo from "../../avatars/sarahedo.svg";
 import SVGjohndoe from "../../avatars/johndoe.svg";
 import SVGmarcelo from "../../avatars/johndoe.svg";
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Button from "../../components/Button";
 import Checkbox from '@material-ui/core/Checkbox';
-import { Link } from "react-router-dom";
+import StyledLink from "../../components/StyledLink";
+
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -169,26 +169,12 @@ const QuestionShowResults = (props) => {
     <Container style={{marginTop: "20px"}}>
       <div className={classes.root} style={{ backgroundColor: '#cfe8fc', paddingTop: "10px", paddingBottom: "30px"}}>
         {componentCard}
-        <Link to={`/questions/`} style={buttonStyle}>Back</Link>
+        <StyledLink to={`/questions/`} label={"Back"}></StyledLink>
       </div>
     </Container>
   )
 }
 
-const buttonStyle = {
-  background: 'rgba(0,212,255,0.6)',
-  border: 0,
-  borderRadius: 3,
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-  color: 'black',
-  height: 48,
-  padding: 10,
-  textDecoration: "none",
-  "&:hover": {
-    background: "rgba(255, 105, 135, .5)",
-  },
-  margin: "5px",
-  marginBottom: "20px"
-}
+
 
 export default QuestionShowResults;

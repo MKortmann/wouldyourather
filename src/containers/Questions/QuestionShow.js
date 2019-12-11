@@ -9,8 +9,6 @@ import SVGtylermcginnis from "../../avatars/tylermcginnis.svg";
 import SVGsarahedo from "../../avatars/sarahedo.svg";
 import SVGjohndoe from "../../avatars/johndoe.svg";
 import SVGmarcelo from "../../avatars/johndoe.svg";
-import Button from "../../components/Button";
-import { Link } from "react-router-dom";
 import Container from '@material-ui/core/Container';
 
 
@@ -19,6 +17,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+
+import StyledLink from "../../components/StyledLink";
 
 
   //  MAYBE WE NEED TO GET ALL THE QUESTIONS AGAIN... I think it will not update...
@@ -91,7 +91,7 @@ import FormLabel from '@material-ui/core/FormLabel';
     <Container style={{marginTop: "20px"}}>
     <div className={classes.root} style={{ backgroundColor: '#cfe8fc', paddingTop: "10px", paddingBottom: "30px"}}>
       {componentCard}
-      <Link to={`/questions/${props.match.params.question_id}/${value}`} style={buttonStyle}>Vote</Link>
+      <StyledLink to={`/questions/${props.match.params.question_id}/${value}`} label={"Vote"}></StyledLink>
     </div>
     </Container>
 
@@ -99,19 +99,3 @@ import FormLabel from '@material-ui/core/FormLabel';
 }
 
 export default QuestionShow;
-
-const buttonStyle = {
-    background: 'rgba(0,212,255,0.6)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'black',
-    height: 48,
-    padding: 10,
-    textDecoration: "none",
-    "&:hover": {
-      background: "rgba(255, 105, 135, .5)",
-    },
-    margin: "5px",
-    marginBottom: "20px"
-  }

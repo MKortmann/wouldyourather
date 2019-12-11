@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Input from "./Input";
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import StyledLink from "./StyledLink";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,27 +57,10 @@ export default function ServerModal(props) {
           <Input label={"Please, enter your full name"} elem={"fullName"} />
           <Input label={"Please, enter your user name"} elem={"userName"}/>
           <Input label={"Please, enter your E-Mail"} elem={"eMail"}/>
-          <Link to="/"  style={buttonStyle}>Back</Link>
-          <Link to="/Checking/"  style={buttonStyle}>Play</Link>
+          <StyledLink to="/"  label={"Back"}/>
+          <StyledLink to="/Checking/"  label={"Play"}/>
         </div>
       </Modal>
     </div>
   );
 }
-
-
-const buttonStyle = {
-    background: 'rgba(0,212,255,0.6)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'black',
-    height: 48,
-    padding: 10,
-    textDecoration: "none",
-    "&:hover": {
-      background: "rgba(255, 105, 135, .5)",
-    },
-    margin: "5px",
-    marginBottom: "20px"
-  }

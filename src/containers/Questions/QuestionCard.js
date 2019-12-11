@@ -3,28 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { Link } from "react-router-dom";
+import StyledLink from "../../components/StyledLink";
 
 const useStyles = makeStyles({
 
 });
-
-const buttonStyle = {
-    background: 'rgba(0,212,255,0.6)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-    fontSize: "30px",
-    height: 48,
-    padding: 0,
-    textDecoration: "none",
-    "&:hover": {
-      background: "rgba(255, 105, 135, .5)",
-    },
-    margin: "5px",
-    marginBottom: "20px"
-  }
 
 function QuestionCard(props) {
   const classes = useStyles();
@@ -55,7 +38,7 @@ function QuestionCard(props) {
   return (
     <React.Fragment>
       { componentCard }
-      <Link to={`/questions/${props.item.id}`} style={buttonStyle}>View Question</Link>
+      <StyledLink to={`/questions/${props.item.id}`} label={"View Question"}/>
     </React.Fragment>
   );
 }
