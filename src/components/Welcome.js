@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Input from "./Input";
 import Select from "./Select";
-import Button from "./Button";
 import StyledLink from "./StyledLink";
 
 const useStyles = makeStyles(theme => ({

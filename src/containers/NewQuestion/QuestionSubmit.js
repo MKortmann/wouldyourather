@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Input from "../../components/Input";
-import Button from "../../components/Button";
-import { Link } from "react-router-dom";
+import StyledLink from "../../components/StyledLink";
 
 
 const useStyles = makeStyles(theme => ({
@@ -57,8 +56,8 @@ function QuestionSubmit (props) {
           <p id="server-modal-description">Please, fill out the two possible options bellow!</p>
           <Input label={"First Option"} />
           <Input label={"Second Option"} />
-          <Link to="/questions/submit"  style={buttonStyle}>Submit Question</Link>
-          <Link to="/questions/"  style={buttonStyle}>Back</Link>
+          <StyledLink to="/questions/submit"  label={"Submit Question"}/>
+          <StyledLink to="/questions/"  label={"Back"}/>
         </div>
       </Modal>
     </div>
@@ -66,19 +65,3 @@ function QuestionSubmit (props) {
 }
 
 export default QuestionSubmit;
-
-const buttonStyle = {
-    background: 'rgba(0,212,255,0.6)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'black',
-    height: 48,
-    padding: 10,
-    textDecoration: "none",
-    "&:hover": {
-      background: "rgba(255, 105, 135, .5)",
-    },
-    margin: "5px",
-    marginBottom: "20px"
-  }
