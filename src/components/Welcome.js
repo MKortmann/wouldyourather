@@ -5,7 +5,10 @@ import Input from "./Input";
 import Select from "./Select";
 import Button from "./Button";
 import { Link } from "react-router-dom";
-
+// used for inline style ()
+// import Radium, { StyleRoot } from "radium";
+// var RadiumLink = Radium(Link);
+import styled from "styled-components";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,16 +35,39 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2, 4, 3),
   },
 }));
+// stopped at class 72
+const StyledLink = styled(Link)`
+  background: rgba(0,212,255,0.6);
+  border: 0;
+  color: black;
+  height: 48;
+  padding: 10;
+  textDecoration: none;
+  &:hover {
+    background-color: rgba(255, 105, 135, .5);
+    color: white
+  },
+  `;
 
-export default function ServerModal(props) {
+  const StyledButton = styled(Button)`
+    color: black;
+    font-weight: bold;
+    &:hover {
+      background-color: rgba(255, 105, 135, .5),
+      color: white
+    },
+    `;
+
+function Welcome(props) {
   const classes = useStyles();
+
+
 
   useEffect(() => {
     localStorage.clear();
   }, [])
 
   return (
-    <div>
       <Modal
         disablePortal
         disableEnforceFocus
@@ -55,11 +81,16 @@ export default function ServerModal(props) {
           <h2 id="server-modal-title">Welcome To Would You Rather</h2>
           <Select select={props.select} authUser={props.authUser}/>
           <hr/><br/>
-          <Link to="/checking" style={buttonStyle} >SignIn</Link>
-          <Link to="/signUp" style={buttonStyle}>SignUp</Link>
+
+            <StyledLink to="/checking" >SignInXXXXXXXXXXXXXX</StyledLink>
+
+            <Link to="/signUp" style={buttonStyle}>SignUp</Link>
+
+            <p style={buttonStyle}>Hello World</p>
+
+            <StyledButton>Hello World</StyledButton>
         </div>
       </Modal>
-    </div>
   );
 }
 
@@ -72,9 +103,12 @@ const buttonStyle = {
   height: 48,
   padding: 10,
   textDecoration: "none",
-  "&:hover": {
-    background: "rgba(255, 105, 135, .5)",
+  ":hover": {
+    backgroundColor: "rgba(255, 105, 135, .5)",
+    color: "white"
   },
   margin: "5px",
   marginBottom: "20px"
 }
+
+export default Welcome;

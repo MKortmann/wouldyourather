@@ -57,7 +57,7 @@ function App(props) {
 
   return (
     <div className="App">
-
+      <p className="red">HELLO WORLD</p>
     <Appbar loggedInStatus={loggedInStatus} handleLogOut={handleLogOut}/>
 
     <Switch>

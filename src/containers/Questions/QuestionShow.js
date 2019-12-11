@@ -31,21 +31,6 @@ import FormLabel from '@material-ui/core/FormLabel';
     },
   });
 
-  const buttonStyle = {
-      background: 'rgba(0,212,255,0.6)',
-      border: 0,
-      borderRadius: 3,
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      color: 'black',
-      height: 48,
-      padding: 10,
-      textDecoration: "none",
-      "&:hover": {
-        background: "rgba(255, 105, 135, .5)",
-      },
-      margin: "5px",
-      marginBottom: "20px"
-    }
 
   const QuestionShow = (props) => {
 
@@ -114,3 +99,19 @@ import FormLabel from '@material-ui/core/FormLabel';
 }
 
 export default QuestionShow;
+
+const buttonStyle = {
+    background: 'rgba(0,212,255,0.6)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'black',
+    height: 48,
+    padding: 10,
+    textDecoration: "none",
+    "&:hover": {
+      background: "rgba(255, 105, 135, .5)",
+    },
+    margin: "5px",
+    marginBottom: "20px"
+  }
