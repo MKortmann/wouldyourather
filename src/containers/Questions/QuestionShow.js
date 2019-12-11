@@ -47,6 +47,7 @@ import StyledLink from "../../components/StyledLink";
   let componentCard = "";
 
   if (props.questions !== null) {
+
     switch (props.questions[props.match.params.question_id].author) {
       case "sarahedo":
         componentAvatar = SVGsarahedo;

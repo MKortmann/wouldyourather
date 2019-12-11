@@ -43,10 +43,10 @@ export default function DenseAppBar(props) {
     componentToRender = (
         <React.Fragment>
           <Typography variant="h6" color="inherit" className={classes.tab} >
-            <StyledLink to="/" label={"HOME"} />
+            <StyledLink to="/" label={"Home"} />
           </Typography>
           <Typography variant="h6" color="inherit" className={classes.tab}>
-            <StyledLink to="/newQuestion" label={"New Question"}/>
+            <StyledLink to="/newQuestion" label={"New Question"} bgColor={"black"}/>
           </Typography>
           <Typography variant="h6" color="inherit" className={classes.tab}  >
             Leaderboard

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Input from "../../components/Input";
@@ -35,10 +35,6 @@ function QuestionSubmit (props) {
   const classes = useStyles();
   const rootRef = React.useRef(null);
 
-  useEffect(() => {
-    localStorage.clear();
-  }, [])
-
   return (
     <div className={classes.root} ref={rootRef}>
       <Modal
@@ -54,9 +50,9 @@ function QuestionSubmit (props) {
         <div className={classes.paper}>
           <h2 id="server-modal-title">Would You Rather...</h2>
           <p id="server-modal-description">Please, fill out the two possible options bellow!</p>
-          <Input label={"First Option"} />
-          <Input label={"Second Option"} />
-          <StyledLink to="/questions/submit"  label={"Submit Question"}/>
+          <Input label={"First Option"} elem="firstOption"/>
+          <Input label={"Second Option"} elem="secondOption"/>
+          <StyledLink to="/newQuestion/submitted"  label={"Submit Question"}/>
           <StyledLink to="/questions/"  label={"Back"}/>
         </div>
       </Modal>

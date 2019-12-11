@@ -16,6 +16,7 @@ const Checking = (props) => {
     const eMail = JSON.parse(localStorage.getItem("eMail"));
     const selectedUser = JSON.parse(localStorage.getItem("selectedUser"));
     const action = props.action;
+    const authUserLS = JSON.parse(localStorage.getItem("authUser"));
 
 
     if(fullName !== null) {
@@ -34,6 +35,12 @@ const Checking = (props) => {
       setAuthUser(selectedUser);
       handleSuccessfulAuth("ok");
 
+    } else if (authUserLS !== null) {
+      // let's set the auth. User
+      localStorage.clear();
+      localStorage.setItem("authUser", JSON.stringify(authUserLS))
+      setAuthUser(authUserLS);
+      handleSuccessfulAuth("ok");
     } else {
       props.history.push("/") //doing redirect here.
     }

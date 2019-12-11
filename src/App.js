@@ -6,6 +6,7 @@ import SignUp from "./components/SignUp";
 import QuestionShow from "./containers/Questions/QuestionShow";
 import QuestionShowResults from "./containers/Questions/QuestionShowResults";
 import QuestionSubmit from "./containers/NewQuestion/QuestionSubmit";
+import QuestionSubmitted from "./containers/NewQuestion/QuestionSubmitted";
 import Checking from "./containers/Checking";
 import Root from "./containers/Root";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
@@ -25,7 +26,7 @@ function App(props) {
 
   // Here we load all the users and questions
   useEffect( () => {
-    localStorage.clear();
+    // localStorage.clear();
     _getUsers()
       .then(res => {
         setUsers(res);
@@ -36,23 +37,26 @@ function App(props) {
         setQuestions(res);
       })
 
+    if ( JSON.parse(localStorage.getItem("authUser")) !== null ) {
+      setLoggedInStatus("LOGGED_IN");
+      props.history.push("/questions") ;
+    } else {
+      setLoggedInStatus("NOT_LOGGED_IN");
+      props.history.push("/welcome") ;
+    }
+
   }, [])
-
-  useEffect( () => {
-
-    console.log(`[App.js]: use effect run`);
-
-  })
 
   const handleLogin = (data) => {
     console.log(data);
-    setLoggedInStatus("LOGGED_IN")
+    setLoggedInStatus("LOGGED_IN");
+    props.history.push("/checking") ;
   }
 
   const handleLogOut = () => {
     console.log();
     setLoggedInStatus("NOT_LOGGED_IN");
-    props.history.push("/") //doing redirect here.
+    props.history.push("/welcome") //doing redirect here.
   }
 
   return (
@@ -63,13 +67,11 @@ function App(props) {
 
       <Route
         exact
-        path={"/"}
+        path={"/welcome"}
         render = { props => (
           <Welcome loggedInStatus={loggedInStatus}/>
         )}
       />
-
-
 
       <Route
         exact
@@ -79,11 +81,17 @@ function App(props) {
         )}
       />
 
-
       <Route
         path={"/signUp"}
         render = { props => (
           <SignUp loggedInStatus={loggedInStatus}/>
+        )}
+      />
+
+      <Route
+        path={"/newQuestion/submitted"}
+        render = { props => (
+          <QuestionSubmitted loggedInStatus={loggedInStatus}/>
         )}
       />
 

@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import Input from "./Input";
 import Select from "./Select";
 import StyledLink from "./StyledLink";
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,12 +33,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+
 function Welcome(props) {
   const classes = useStyles();
 
   useEffect(() => {
-    localStorage.clear();
+    // localStorage.clear();
+    if ( JSON.parse(localStorage.getItem("authUser")) !== null ) {
+        props.history.push("/checking") ;
+    }
   }, [])
+
 
   return (
     <Modal
@@ -61,4 +67,4 @@ function Welcome(props) {
 }
 
 
-export default Welcome;
+export default withRouter(Welcome);
