@@ -6,60 +6,25 @@ import Spinner from "../components/Spinner"
 
 const Checking = (props) => {
 
-  const [authUser, setAuthUser] = useState("");
-
   // get the data from localStorage
   useEffect(() => {
-
-    const fullName = JSON.parse(localStorage.getItem("fullName"));
-    const userName = JSON.parse(localStorage.getItem("userName"));
-    const eMail = JSON.parse(localStorage.getItem("eMail"));
-    const selectedUser = JSON.parse(localStorage.getItem("selectedUser"));
-    const action = props.action;
-    const authUserLS = JSON.parse(localStorage.getItem("authUser"));
-
-
-    if(fullName !== null) {
-      localStorage.clear();
-      // let's add the user
-      localStorage.setItem("authUser", JSON.stringify(fullName))
+    
+    if(props.signUpData.fullName !== undefined) {
       // adding the user
-      _addUser(fullName)
-        .then(res => console.log(res));
-      setAuthUser(fullName);
-      handleSuccessfulAuth("ok");
-    } else if (selectedUser !== null){
-      // let's set the auth. User
-      localStorage.clear();
-      localStorage.setItem("authUser", JSON.stringify(selectedUser))
-      setAuthUser(selectedUser);
-      handleSuccessfulAuth("ok");
+      _addUser(props.signUpData.fullName)
+      props.handleLogin("signUp");
 
-    } else if (authUserLS !== null) {
-      // let's set the auth. User
-      localStorage.clear();
-      localStorage.setItem("authUser", JSON.stringify(authUserLS))
-      setAuthUser(authUserLS);
-      handleSuccessfulAuth("ok");
+    } else if (props.signUpData.selectedUser !== undefined){
+      props.handleLogin("logIn");
     } else {
-      props.history.push("/") //doing redirect here.
+      props.history.push("/Welcome") //doing redirect here.
     }
   }, [])
 
 
-  function handleSuccessfulAuth (status) {
-
-    console.log(status);
-    props.handleLogin("LOGGED_IN")
-    setTimeout(() => {
-      props.history.push("/questions") //doing redirect here.
-    }, 200)
-
-
-  }
-
   return (
-    <Spinner />
+    <React.Fragment>
+    </React.Fragment>
   )
 }
 

@@ -34,10 +34,6 @@ export default function ServerModal(props) {
   const classes = useStyles();
   const rootRef = React.useRef(null);
 
-  useEffect(() => {
-    localStorage.clear();
-  }, [])
-
   return (
     <div className={classes.root} ref={rootRef}>
       <Modal

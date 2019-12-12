@@ -3,14 +3,15 @@ import './App.css';
 import Appbar from "./components/Appbar";
 import Welcome from "./components/Welcome";
 import SignUp from "./components/SignUp";
+import Questions from "./containers/Questions/Questions";
 import QuestionShow from "./containers/Questions/QuestionShow";
 import QuestionShowResults from "./containers/Questions/QuestionShowResults";
 import QuestionSubmit from "./containers/NewQuestion/QuestionSubmit";
 import QuestionSubmitted from "./containers/NewQuestion/QuestionSubmitted";
 import Checking from "./containers/Checking";
 import StyledLink from "./components/StyledLink";
-import Root from "./containers/Root";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
+
 import { withRouter } from 'react-router-dom';
 import { _getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from "./_DATA";
 
@@ -20,6 +21,8 @@ function App(props) {
 
   // install lifecycle hook
   const [loggedInStatus, setLoggedInStatus] = useState("NOT_LOGGED_IN");
+  // logged User
+  const [user, setUser] = useState(null);
 
   // state for answered and unanswered questions
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
@@ -31,7 +34,6 @@ function App(props) {
   // state for user and questions
   const [questions, setQuestions] = useState(null);
   const [users, setUsers] = useState(null);
-  const [selectUser, setSelectUser] = useState(null);
 
 
   // Here we load all the users and questions
@@ -43,19 +45,14 @@ function App(props) {
     // localStorage.clear();
     const questionsAnsweredTemp = [];
     const questionsUnAnsweredTemp = [];
-    const authUser = JSON.parse(localStorage.getItem("authUser"))
 
     _getUsers()
       .then(res => {
         setUsers(res);
 
-        if ( JSON.parse(localStorage.getItem("authUser")) !== null ) {
-          // setLoggedInStatus("LOGGED_IN");
-          props.history.push("/questions") ;
+        if ( loggedInStatus === "LOGGED_IN" ) {
           handleLogin();
         } else {
-          // setLoggedInStatus("NOT_LOGGED_IN");
-          props.history.push("/welcome") ;
           handleLogOut();
         }
 
@@ -65,34 +62,43 @@ function App(props) {
       .then(res => {
         setQuestions(res);
         const arrayQuestions = Object.values(res);
+
+        if ( signUpData) {
+
         arrayQuestions.forEach( (item, index) => {
           // check if the author of this questions is the logged authors
-          if (  (arrayQuestions[index].optionOne.votes.indexOf(authUser) >= 0) ||
-                (arrayQuestions[index].optionTwo.votes.indexOf(authUser) >= 0) ) {
+          if (  ( arrayQuestions[index].optionOne.votes.indexOf(signUpData.selectedUser)  >= 0 ) ||
+                ( arrayQuestions[index].optionTwo.votes.indexOf(signUpData.selectedUser) >= 0 ) ) {
             questionsAnsweredTemp.push(item);
           } else {
             questionsUnAnsweredTemp.push(item);
           }
         })
 
+
+
         setAnsweredQuestions(questionsAnsweredTemp);
         setUnansweredQuestions(questionsUnAnsweredTemp);
-        console.log(`Questions Answered: ${questionsAnsweredTemp}`);
-        console.log(`Questions Unanswered: ${questionsUnAnsweredTemp}`);
+      }
+        // Important to check if the user is logged, or has already select or add a new user
+        if ( (setLoggedInStatus === "LOGGED_IN") || (user !== null) ) {
+          props.history.push("/questions");
+        } else {
+          props.history.push("/welcome") ;
+        }
 
       });
 
   }
 
   const handleLogin = (data) => {
-    console.log(data);
+
     setLoggedInStatus("LOGGED_IN");
-    props.history.push("/questions") ;
+    fetchingAndReloading();
+
   }
 
   const handleLogOut = () => {
-    localStorage.clear();
-    console.log();
     setLoggedInStatus("NOT_LOGGED_IN");
     props.history.push("/welcome") //doing redirect here.
   }
@@ -113,17 +119,20 @@ function App(props) {
     fetchingAndReloading();
   }
 
+  // used to the SignUP
   const inputText = (text, elem ) => {
 
     const obj = {...signUpData}
     obj[elem] = text;
     setSignUpData(obj);
+    // elem === "fullName" ?  setUser(test) : null
   }
 
   const checkIn = (selectedUser) => {
     const obj = {...signUpData}
     obj["selectedUser"] = selectedUser;
     setSignUpData(obj);
+    setUser(selectedUser);
   }
 
 
@@ -143,10 +152,9 @@ function App(props) {
       />
 
       <Route
-        exact
-        path={"/questions/"}
+        path={"/questions"}
         render = { props => (
-          <Root loggedInStatus={loggedInStatus} answeredQuestions={answeredQuestions} unansweredQuestions={unansweredQuestions}/>
+          <Questions loggedInStatus={loggedInStatus} answeredQuestions={answeredQuestions} unansweredQuestions={unansweredQuestions}/>
         )}
       />
 
@@ -174,7 +182,7 @@ function App(props) {
       <Route
         path={"/checking"}
         render = { props => (
-          <Checking handleLogin={handleLogin} loggedInStatus={loggedInStatus}/>
+          <Checking handleLogin={handleLogin} signUpData={signUpData} loggedInStatus={loggedInStatus}/>
         )}
       />
 
