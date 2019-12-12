@@ -21,7 +21,7 @@ export default function ControlledOpenSelect(props) {
 
   // const [user, setUser] = useState("");
   const [open, setOpen] = useState(false);
-
+  const [value, setValue] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -30,7 +30,7 @@ export default function ControlledOpenSelect(props) {
   const handleOpen = () => {
     setOpen(true);
   };
-debugger
+
 
   return (
     <div>
@@ -45,9 +45,9 @@ debugger
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          onChange={e =>{ // saving the user data of this user to local storage
-                      props.checkIn(e.target.value)
-                      }}
+          onChange={ e => {props.checkIn(e.target.value)
+                          setValue(e.target.value)}}
+          value={ value }
         >
         {Object.keys(props.users).map((user, index) => {
           return (

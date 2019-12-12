@@ -31,6 +31,7 @@ function App(props) {
   // state for user and questions
   const [questions, setQuestions] = useState(null);
   const [users, setUsers] = useState(null);
+  const [selectUser, setSelectUser] = useState(null);
 
 
   // Here we load all the users and questions
@@ -57,7 +58,7 @@ function App(props) {
           props.history.push("/welcome") ;
           handleLogOut();
         }
-        
+
       })
 
     _getQuestions()
@@ -79,11 +80,7 @@ function App(props) {
         console.log(`Questions Answered: ${questionsAnsweredTemp}`);
         console.log(`Questions Unanswered: ${questionsUnAnsweredTemp}`);
 
-
-
       });
-
-
 
   }
 
@@ -123,8 +120,10 @@ function App(props) {
     setSignUpData(obj);
   }
 
-  const checkIn = () => {
-
+  const checkIn = (selectedUser) => {
+    const obj = {...signUpData}
+    obj["selectedUser"] = selectedUser;
+    setSignUpData(obj);
   }
 
 

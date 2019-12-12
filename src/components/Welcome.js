@@ -37,15 +37,6 @@ const useStyles = makeStyles(theme => ({
 function Welcome(props) {
   const classes = useStyles();
 
-  useEffect(() => {
-    // localStorage.clear();
-    if ( JSON.parse(localStorage.getItem("authUser")) !== null ) {
-        props.history.push("/checking") ;
-    }
-  }, [])
-
-  debugger
-
   return (
     <Modal
       disablePortal

@@ -56,7 +56,7 @@ export default function ServerModal(props) {
           <Input inputText={props.inputText} label={"Please, enter your full name"} elem={"fullName"} />
           <Input inputText={props.inputText} label={"Please, enter your user name"} elem={"userName"}/>
           <Input inputText={props.inputText} label={"Please, enter your E-Mail"} elem={"eMail"}/>
-          <StyledLink to="/"  label={"Back"}/>
+          <StyledLink to="/Welcome"  label={"Back"}/>
           <StyledLink to="/Checking/"  label={"Play"}/>
         </div>
       </Modal>
