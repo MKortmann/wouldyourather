@@ -46,10 +46,6 @@ const Checking = (props) => {
     }
   }, [])
 
-  // useEffect( () => {
-  //   console.log(`[Logged.js]: use effect run`);
-  //
-  // })
 
   function handleSuccessfulAuth (status) {
 

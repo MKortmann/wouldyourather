@@ -53,9 +53,9 @@ export default function ServerModal(props) {
         <div className={classes.paper}>
           <h2 id="server-modal-title">Welcome To Would You Rather</h2>
           <p id="server-modal-description">Please login to start to play</p>
-          <Input label={"Please, enter your full name"} elem={"fullName"} />
-          <Input label={"Please, enter your user name"} elem={"userName"}/>
-          <Input label={"Please, enter your E-Mail"} elem={"eMail"}/>
+          <Input inputText={props.inputText} label={"Please, enter your full name"} elem={"fullName"} />
+          <Input inputText={props.inputText} label={"Please, enter your user name"} elem={"userName"}/>
+          <Input inputText={props.inputText} label={"Please, enter your E-Mail"} elem={"eMail"}/>
           <StyledLink to="/"  label={"Back"}/>
           <StyledLink to="/Checking/"  label={"Play"}/>
         </div>

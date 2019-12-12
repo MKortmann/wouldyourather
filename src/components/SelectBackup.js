@@ -4,6 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { _getUsers } from "../_DATA";
 
 const useStyles = makeStyles(theme => ({
 
@@ -18,10 +19,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function ControlledOpenSelect(props) {
   const classes = useStyles();
-
+  // to debug: state saved in select
+  const [users, setUsers] = useState([]);
+  // to debug: state saved in select
+  const [user, setUser] = useState([]);
   // const [user, setUser] = useState("");
   const [open, setOpen] = useState(false);
 
+  // getting the users
+  useEffect( () => {
+    _getUsers()
+    .then(res => {
+      // Object.keys create an array that contains the properties of an object.
+      const tempUsers = Object.keys(res);
+      setUsers(tempUsers)
+      }
+    )
+  }, [])
 
   const handleClose = () => {
     setOpen(false);
@@ -30,7 +44,7 @@ export default function ControlledOpenSelect(props) {
   const handleOpen = () => {
     setOpen(true);
   };
-debugger
+
 
   return (
     <div>
@@ -38,18 +52,20 @@ debugger
         <p>Please, select a user to <em className={classes.header}>LOGIN</em> or click <em className={classes.header}>SIGNUP</em></p>
       </h3>
       <FormControl className={classes.formControl}>
-        <InputLabel id="openSelectLabel">Select User</InputLabel>
+        <InputLabel id="demo-controlled-open-select-label">Select User</InputLabel>
         <Select
-          labelId="openSelectLabelId"
-          id="openSelectLabel"
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
+          value={props.authUser}
           onChange={e =>{ // saving the user data of this user to local storage
-                      props.checkIn(e.target.value)
-                      }}
+                      localStorage.setItem("selectedUser", JSON.stringify(e.target.value))
+                      setUser(e.target.value)}}
+          value={user}
         >
-        {Object.keys(props.users).map((user, index) => {
+        {users.map((user, index) => {
           return (
             <MenuItem key={index} value={user}>
               {user}

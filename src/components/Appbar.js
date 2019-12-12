@@ -43,7 +43,7 @@ export default function DenseAppBar(props) {
     componentToRender = (
         <React.Fragment>
           <Typography variant="h6" color="inherit" className={classes.tab} >
-            <StyledLink to="/" label={"Home"} />
+            <StyledLink to="/questions" label={"Home"} />
           </Typography>
           <Typography variant="h6" color="inherit" className={classes.tab}>
             <StyledLink to="/newQuestion" label={"New Question"} bgColor={"black"}/>

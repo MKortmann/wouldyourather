@@ -5,6 +5,7 @@ import Input from "./Input";
 import Select from "./Select";
 import StyledLink from "./StyledLink";
 import { withRouter } from 'react-router-dom';
+import Button from "./Button";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,7 +34,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-
 function Welcome(props) {
   const classes = useStyles();
 
@@ -44,6 +44,7 @@ function Welcome(props) {
     }
   }, [])
 
+  debugger
 
   return (
     <Modal
@@ -57,7 +58,7 @@ function Welcome(props) {
     >
     <div className={classes.paper}>
       <h2 id="server-modal-title">Welcome To Would You Rather</h2>
-      <Select select={props.select} authUser={props.authUser}/>
+      <Select checkIn={props.checkIn} users={props.users}/>
       <hr/><br/>
         <StyledLink to="/checking" label={"SignIn"}/>
         <StyledLink to="/signUp" label={"SignUp"}/>
