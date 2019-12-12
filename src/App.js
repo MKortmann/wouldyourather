@@ -12,7 +12,7 @@ import StyledLink from "./components/StyledLink";
 import Root from "./containers/Root";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import { withRouter } from 'react-router-dom';
-import { _getUsers, _getQuestions, _saveQuestionAnswer} from "./_DATA";
+import { _getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from "./_DATA";
 
 
 
@@ -93,10 +93,17 @@ function App(props) {
   }
 
   const saveQuestion = ({authedUser, qid, answer}) => {
-    
+
     _saveQuestionAnswer ({  authedUser: authedUser,
                             qid: qid,
                             answer: answer} );
+
+    fetchingAndReloading();
+  }
+
+  const submitQuestion = ({optionOneText, optionTwoText, author}) => {
+    _saveQuestion({optionOneText, optionTwoText, author})
+      .then( res => console.log(res))
 
     fetchingAndReloading();
   }
@@ -135,7 +142,7 @@ function App(props) {
       <Route
         path={"/newQuestion/submitted"}
         render = { props => (
-          <QuestionSubmitted loggedInStatus={loggedInStatus}/>
+          <QuestionSubmitted submitQuestion={submitQuestion} loggedInStatus={loggedInStatus}/>
         )}
       />
 

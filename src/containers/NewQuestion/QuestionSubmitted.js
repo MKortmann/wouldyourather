@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { _saveQuestion } from "../../_DATA";
 import StyledLink from "../../components/StyledLink";
 
 
@@ -11,8 +10,10 @@ function Submitted (props) {
     const author = JSON.parse(localStorage.getItem("authUser"));
     // { optionOneText, optionTwoText, author })
 
-    _saveQuestion({optionOneText, optionTwoText, author})
-      .then( res => console.log(res))
+    // _saveQuestion({optionOneText, optionTwoText, author})
+    //   .then( res => console.log(res))
+
+    props.submitQuestion({optionOneText, optionTwoText, author});
 
   }, [])
 
