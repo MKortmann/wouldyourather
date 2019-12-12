@@ -12,7 +12,7 @@ import StyledLink from "./components/StyledLink";
 import Root from "./containers/Root";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import { withRouter } from 'react-router-dom';
-import { _getUsers, _getQuestions} from "./_DATA";
+import { _getUsers, _getQuestions, _saveQuestionAnswer} from "./_DATA";
 
 
 
@@ -31,6 +31,11 @@ function App(props) {
 
   // Here we load all the users and questions
   useEffect( () => {
+    fetchingAndReloading();
+
+  }, [])
+
+  const fetchingAndReloading = () => {
     // localStorage.clear();
     const questionsAnsweredTemp = [];
     const questionsUnAnsweredTemp = [];
@@ -72,8 +77,7 @@ function App(props) {
       props.history.push("/welcome") ;
       handleLogOut();
     }
-
-  }, [])
+  }
 
   const handleLogin = (data) => {
     console.log(data);
@@ -86,6 +90,15 @@ function App(props) {
     console.log();
     setLoggedInStatus("NOT_LOGGED_IN");
     props.history.push("/welcome") //doing redirect here.
+  }
+
+  const saveQuestion = ({authedUser, qid, answer}) => {
+    
+    _saveQuestionAnswer ({  authedUser: authedUser,
+                            qid: qid,
+                            answer: answer} );
+
+    fetchingAndReloading();
   }
 
 
@@ -143,7 +156,7 @@ function App(props) {
       <Route
         path={"/questions/:question_id/:answer"}
         render = { (props) => (
-          <QuestionShowResults {...props} questions={questions} user={users} loggedInStatus={loggedInStatus} />
+          <QuestionShowResults {...props} saveQuestion={saveQuestion} questions={questions} user={users} loggedInStatus={loggedInStatus} />
         )}
       />
       <Route

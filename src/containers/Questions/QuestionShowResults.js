@@ -18,7 +18,6 @@ import Grid from '@material-ui/core/Grid';
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import { _saveQuestionAnswer} from "../../_DATA";
 import Container from '@material-ui/core/Container';
 
 const QuestionShowResults = (props) => {
@@ -79,9 +78,11 @@ const QuestionShowResults = (props) => {
       // _saveQuestionAnswer ({  authedUser: props.questions[props.match.params.question_id].author,
       //                         qid: props.match.params.question_id,
       //                         answer: option} );
-      _saveQuestionAnswer ({  authedUser: JSON.parse(localStorage.getItem("authUser")),
+      props.saveQuestion({  authedUser: JSON.parse(localStorage.getItem("authUser")),
                               qid: props.match.params.question_id,
                               answer: option} );
+
+
       // GET THE TOTAL NUMBER OF Votes
       const totalNumberOfVotes = numberOfVotesOfOptionOne + numberOfVotesOfOptionTwo;
 
