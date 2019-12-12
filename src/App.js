@@ -8,13 +8,12 @@ import QuestionShow from "./containers/Questions/QuestionShow";
 import QuestionShowResults from "./containers/Questions/QuestionShowResults";
 import QuestionSubmit from "./containers/NewQuestion/QuestionSubmit";
 import QuestionSubmitted from "./containers/NewQuestion/QuestionSubmitted";
-import Checking from "./containers/Checking";
+import Checking from "./components/Checking";
 import StyledLink from "./components/StyledLink";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 import { withRouter } from 'react-router-dom';
 import { _getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from "./_DATA";
-
 
 
 function App(props) {
@@ -41,7 +40,7 @@ function App(props) {
     fetchingAndReloading();
   }, [])
 
-  const fetchingAndReloading = () => {
+  const fetchingAndReloading = ( toDo ) => {
     // localStorage.clear();
     const questionsAnsweredTemp = [];
     const questionsUnAnsweredTemp = [];
@@ -49,13 +48,6 @@ function App(props) {
     _getUsers()
       .then(res => {
         setUsers(res);
-
-        if ( loggedInStatus === "LOGGED_IN" ) {
-          handleLogin();
-        } else {
-          handleLogOut();
-        }
-
       })
 
     _getQuestions()
@@ -80,12 +72,15 @@ function App(props) {
         setAnsweredQuestions(questionsAnsweredTemp);
         setUnansweredQuestions(questionsUnAnsweredTemp);
       }
-        // Important to check if the user is logged, or has already select or add a new user
-        if ( (setLoggedInStatus === "LOGGED_IN") || (user !== null) ) {
+
+      // Important to check if the user is logged, or has already select or add a new user
+      if (toDo !== "STAY_IN_QUESTION_SHOW_RESULTS") {
+        if ( (setLoggedInStatus === "LOGGED_IN") || (user !== null)  ) {
           props.history.push("/questions");
-        } else {
+        } else  {
           props.history.push("/welcome") ;
         }
+      }
 
       });
 
@@ -109,7 +104,7 @@ function App(props) {
                             qid: qid,
                             answer: answer} );
 
-    fetchingAndReloading();
+    fetchingAndReloading("STAY_IN_QUESTION_SHOW_RESULTS");
   }
 
   const submitQuestion = ({optionOneText, optionTwoText, author}) => {
@@ -142,7 +137,6 @@ function App(props) {
 
     <Switch>
 
-
       <Route
         exact
         path={"/welcome"}
@@ -152,6 +146,7 @@ function App(props) {
       />
 
       <Route
+        exact
         path={"/questions"}
         render = { props => (
           <Questions loggedInStatus={loggedInStatus} answeredQuestions={answeredQuestions} unansweredQuestions={unansweredQuestions}/>
@@ -189,7 +184,7 @@ function App(props) {
       <Route
         path={"/questions/:question_id/:answer"}
         render = { (props) => (
-          <QuestionShowResults {...props} saveQuestion={saveQuestion} questions={questions} users={users} loggedInStatus={loggedInStatus} />
+          <QuestionShowResults {...props} saveQuestion={saveQuestion} questions={questions} users={users} user={user} loggedInStatus={loggedInStatus} />
         )}
       />
       <Route

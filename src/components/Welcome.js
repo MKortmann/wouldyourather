@@ -5,7 +5,6 @@ import Input from "./Input";
 import Select from "./Select";
 import StyledLink from "./StyledLink";
 import { withRouter } from 'react-router-dom';
-import Button from "./Button";
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -48,7 +48,6 @@ const QuestionShowResults = (props) => {
     let numberOfVotesOfOptionOne = 0;
     let numberOfVotesOfOptionTwo = 0;
 
-
     if (props.questions !== null) {
       let option = "optionOne";
       switch (props.match.params.answer) {
@@ -73,14 +72,9 @@ const QuestionShowResults = (props) => {
       }
 
       // SAVING THE QUESTION
-      // _saveQuestionAnswer ({ authedUser, qid, answer }) {
-
-      // _saveQuestionAnswer ({  authedUser: props.questions[props.match.params.question_id].author,
-      //                         qid: props.match.params.question_id,
-      //                         answer: option} );
-      props.saveQuestion({  authedUser: JSON.parse(localStorage.getItem("authUser")),
-                              qid: props.match.params.question_id,
-                              answer: option} );
+      props.saveQuestion({  authedUser: props.user,
+                            qid: props.match.params.question_id,
+                            answer: option} );
 
 
       // GET THE TOTAL NUMBER OF Votes
