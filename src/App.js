@@ -8,6 +8,7 @@ import QuestionShowResults from "./containers/Questions/QuestionShowResults";
 import QuestionSubmit from "./containers/NewQuestion/QuestionSubmit";
 import QuestionSubmitted from "./containers/NewQuestion/QuestionSubmitted";
 import Checking from "./containers/Checking";
+import StyledLink from "./components/StyledLink";
 import Root from "./containers/Root";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import { withRouter } from 'react-router-dom';
@@ -24,25 +25,52 @@ function App(props) {
   const [questions, setQuestions] = useState(null);
   const [users, setUsers] = useState(null);
 
+  // state for answered and unanswered questions
+  const [answeredQuestions, setAnsweredQuestions] = useState([]);
+  const [unansweredQuestions, setUnansweredQuestions] = useState([]);
+
   // Here we load all the users and questions
   useEffect( () => {
     // localStorage.clear();
+    const questionsAnsweredTemp = [];
+    const questionsUnAnsweredTemp = [];
+    const authUser = JSON.parse(localStorage.getItem("authUser"))
+
     _getUsers()
       .then(res => {
         setUsers(res);
       })
 
     _getQuestions()
-      .then( res => {
+      .then(res => {
         setQuestions(res);
-      })
+        const arrayQuestions = Object.values(res);
+        arrayQuestions.forEach( (item, index) => {
+          // check if the author of this questions is the logged authors
+          if (  (arrayQuestions[index].optionOne.votes.indexOf(authUser) >= 0) ||
+                (arrayQuestions[index].optionTwo.votes.indexOf(authUser) >= 0) ) {
+            questionsAnsweredTemp.push(item);
+          } else {
+            questionsUnAnsweredTemp.push(item);
+          }
+        })
+
+        setAnsweredQuestions(questionsAnsweredTemp);
+        setUnansweredQuestions(questionsUnAnsweredTemp);
+        console.log(`Questions Answered: ${questionsAnsweredTemp}`);
+        console.log(`Questions Unanswered: ${questionsUnAnsweredTemp}`);
+
+      });
+
 
     if ( JSON.parse(localStorage.getItem("authUser")) !== null ) {
-      setLoggedInStatus("LOGGED_IN");
+      // setLoggedInStatus("LOGGED_IN");
       props.history.push("/questions") ;
+      handleLogin();
     } else {
-      setLoggedInStatus("NOT_LOGGED_IN");
+      // setLoggedInStatus("NOT_LOGGED_IN");
       props.history.push("/welcome") ;
+      handleLogOut();
     }
 
   }, [])
@@ -50,20 +78,23 @@ function App(props) {
   const handleLogin = (data) => {
     console.log(data);
     setLoggedInStatus("LOGGED_IN");
-    props.history.push("/checking") ;
+    props.history.push("/questions") ;
   }
 
   const handleLogOut = () => {
+    localStorage.clear();
     console.log();
     setLoggedInStatus("NOT_LOGGED_IN");
     props.history.push("/welcome") //doing redirect here.
   }
+
 
   return (
     <div className="App">
     <Appbar loggedInStatus={loggedInStatus} handleLogOut={handleLogOut}/>
 
     <Switch>
+
 
       <Route
         exact
@@ -77,7 +108,7 @@ function App(props) {
         exact
         path={"/questions/"}
         render = { props => (
-          <Root loggedInStatus={loggedInStatus}/>
+          <Root loggedInStatus={loggedInStatus} answeredQuestions={answeredQuestions} unansweredQuestions={unansweredQuestions}/>
         )}
       />
 
