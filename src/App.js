@@ -67,8 +67,6 @@ function App(props) {
           }
         })
 
-
-
         setAnsweredQuestions(questionsAnsweredTemp);
         setUnansweredQuestions(questionsUnAnsweredTemp);
       }
@@ -130,6 +128,10 @@ function App(props) {
     setUser(selectedUser);
   }
 
+  // Used to add a new question
+  const inputTextQuestionSubmit = (text) => {
+    console.log(text);
+  }
 
   return (
     <div className="App">
@@ -170,7 +172,7 @@ function App(props) {
       <Route
         path={"/newQuestion"}
         render = { props => (
-          <QuestionSubmit loggedInStatus={loggedInStatus}/>
+          <QuestionSubmit inputText={inputTextQuestionSubmit} loggedInStatus={loggedInStatus}/>
         )}
       />
 

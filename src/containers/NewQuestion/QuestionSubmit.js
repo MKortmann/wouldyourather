@@ -50,8 +50,8 @@ function QuestionSubmit (props) {
         <div className={classes.paper}>
           <h2 id="server-modal-title">Would You Rather...</h2>
           <p id="server-modal-description">Please, fill out the two possible options bellow!</p>
-          <Input label={"First Option"} elem="firstOption"/>
-          <Input label={"Second Option"} elem="secondOption"/>
+          <Input inputText={props.inputText} label={"First Option"} elem="firstOption"/>
+          <Input inputText={props.inputText} label={"Second Option"} elem="secondOption"/>
           <StyledLink to="/newQuestion/submitted"  label={"Submit Question"}/>
           <StyledLink to="/questions/"  label={"Back"}/>
         </div>
