@@ -34,6 +34,9 @@ function App(props) {
   const [questions, setQuestions] = useState(null);
   const [users, setUsers] = useState(null);
 
+  // state for save the first and second question
+  const [newQuestion, setNewQuestion] = useState(null);
+
 
   // Here we load all the users and questions
   useEffect( () => {
@@ -105,7 +108,13 @@ function App(props) {
     fetchingAndReloading("STAY_IN_QUESTION_SHOW_RESULTS");
   }
 
-  const submitQuestion = ({optionOneText, optionTwoText, author}) => {
+  const submitQuestion = () => {
+    // {optionOneText, optionTwoText, author}
+
+    const optionOneText = newQuestion.firstOption;
+    const optionTwoText = newQuestion.secondOption;
+    const author = user;
+
     _saveQuestion({optionOneText, optionTwoText, author})
       .then( res => console.log(res))
 
@@ -114,10 +123,16 @@ function App(props) {
 
   // used to the SignUP
   const inputText = (text, elem ) => {
+    if ( (elem !== "firstOption") && elem !== "secondOption") {
+      const obj = {...signUpData}
+      obj[elem] = text;
+      setSignUpData(obj);
+    } else {
+      const objTemp = {...newQuestion}
+      objTemp[elem] = text;
+      setNewQuestion(objTemp);
+    }
 
-    const obj = {...signUpData}
-    obj[elem] = text;
-    setSignUpData(obj);
     // elem === "fullName" ?  setUser(test) : null
   }
 
@@ -126,11 +141,6 @@ function App(props) {
     obj["selectedUser"] = selectedUser;
     setSignUpData(obj);
     setUser(selectedUser);
-  }
-
-  // Used to add a new question
-  const inputTextQuestionSubmit = (text) => {
-    console.log(text);
   }
 
   return (
@@ -172,7 +182,7 @@ function App(props) {
       <Route
         path={"/newQuestion"}
         render = { props => (
-          <QuestionSubmit inputText={inputTextQuestionSubmit} loggedInStatus={loggedInStatus}/>
+          <QuestionSubmit inputText={inputText} loggedInStatus={loggedInStatus}/>
         )}
       />
 
