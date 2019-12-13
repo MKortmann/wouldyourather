@@ -9,8 +9,7 @@ import QuestionShowResults from "./containers/Questions/QuestionShowResults";
 import QuestionSubmit from "./containers/NewQuestion/QuestionSubmit";
 import QuestionSubmitted from "./containers/NewQuestion/QuestionSubmitted";
 import Checking from "./components/Checking";
-import StyledLink from "./components/StyledLink";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import { withRouter } from 'react-router-dom';
 import { _getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from "./_DATA";
@@ -41,7 +40,7 @@ function App(props) {
   // Here we load all the users and questions
   useEffect( () => {
     fetchingAndReloading();
-  }, [])
+  }, [ ])
 
   const fetchingAndReloading = ( toDo ) => {
     // localStorage.clear();

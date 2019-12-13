@@ -1,8 +1,6 @@
-import React, { useState, useEffect} from "react";
+import React, { useEffect } from "react";
 import { withRouter } from 'react-router-dom';
-import {_addUser,  _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from "../_DATA";
-import Spinner from "../components/Spinner"
-
+import { _addUser } from "../_DATA";
 
 const Checking = (props) => {
 
@@ -18,7 +16,7 @@ const Checking = (props) => {
     } else {
       props.history.push("/Welcome") //doing redirect here.
     }
-  }, [])
+  }, [ ])
 
 
   return (

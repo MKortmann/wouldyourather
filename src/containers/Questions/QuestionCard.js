@@ -10,9 +10,6 @@ const useStyles = makeStyles({
 });
 
 function QuestionCard(props) {
-  const classes = useStyles();
-  // const [showCard, setShowCard] = useState(false);
-
   // converting timestamp to date
   const data = props.item.timestamp;
   let ts = new Date(props.item.timestamp);

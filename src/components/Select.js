@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -21,7 +21,7 @@ export default function ControlledOpenSelect(props) {
 
   // const [user, setUser] = useState("");
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(false);
+  const [value, setValue] = useState("");
 
   const handleClose = () => {
     setOpen(false);
