@@ -48,7 +48,7 @@ export default function DenseAppBar(props) {
             <StyledLink to="/newQuestion" label={"New Question"} bgColor={"black"}/>
           </Typography>
           <Typography variant="h6" color="inherit" className={classes.tab}  >
-            Leaderboard
+            <StyledLink to="/leaderboard" label={"Leaderboard"} bgColor={"black"}/>
           </Typography>
           <Typography variant="h6" color="inherit"  className={classes.login}>
             <span> Welcome {JSON.parse(localStorage.getItem("authUser"))} </span>

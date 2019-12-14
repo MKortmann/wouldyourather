@@ -8,6 +8,7 @@ import QuestionShow from "./containers/Questions/QuestionShow";
 import QuestionShowResults from "./containers/Questions/QuestionShowResults";
 import QuestionSubmit from "./containers/NewQuestion/QuestionSubmit";
 import QuestionSubmitted from "./containers/NewQuestion/QuestionSubmitted";
+import Leaderboard from "./containers/Leaderboard/Leaderboard";
 import Checking from "./components/Checking";
 import { Switch, Route } from "react-router-dom";
 
@@ -153,6 +154,14 @@ function App(props) {
         path={"/welcome"}
         render = { props => (
           <Welcome {...props} checkIn={checkIn} users={users} loggedInStatus={loggedInStatus}/>
+        )}
+      />
+
+      <Route
+        exact
+        path={"/leaderboard"}
+        render = { props => (
+          <Leaderboard {...props} questions={questions} users={users} user={user} loggedInStatus={loggedInStatus}/>
         )}
       />
 
