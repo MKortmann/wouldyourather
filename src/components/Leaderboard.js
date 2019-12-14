@@ -1,8 +1,6 @@
 import React from "react";
-import Table from "../../components/Table";
-import StyledLink from "../../components/StyledLink";
-
-
+import Table from "../containers/Leaderboard/Table";
+import StyledLink from "./StyledLink";
 
 function Leaderboard(props) {
 

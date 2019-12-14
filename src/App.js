@@ -8,7 +8,7 @@ import QuestionShow from "./containers/Questions/QuestionShow";
 import QuestionShowResults from "./containers/Questions/QuestionShowResults";
 import QuestionSubmit from "./containers/NewQuestion/QuestionSubmit";
 import QuestionSubmitted from "./containers/NewQuestion/QuestionSubmitted";
-import Leaderboard from "./containers/Leaderboard/Leaderboard";
+import Leaderboard from "./components/Leaderboard";
 import Checking from "./components/Checking";
 import { Switch, Route } from "react-router-dom";
 

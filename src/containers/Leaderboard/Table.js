@@ -7,6 +7,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import SVGtylermcginnis from "../../avatars/tylermcginnis.svg";
+import SVGsarahedo from "../../avatars/sarahedo.svg";
+import SVGjohndoe from "../../avatars/johndoe.svg";
+import SVGmarcelo from "../../avatars/johndoe.svg";
+
 const useStyles = makeStyles({
   root: {
     margin: "auto",
@@ -65,9 +70,25 @@ export default function CustomizedTables(props) {
 
     let rows = [];
     const totalvalues = [];
+    let componentAvatar = "";
     // here we create an array with the values that we want to render in the table
     users.forEach( (user, index) => {
-      rows.push(createData("avatar", user, props.users[user].questions.length, answered[user], props.users[user].questions.length + answered[user]))
+
+      switch (user) {
+        case "sarahedo":
+          componentAvatar = SVGsarahedo;
+        break;
+        case "tylermcginnis":
+          componentAvatar = SVGtylermcginnis;
+        break;
+        case "johndoe":
+          componentAvatar = SVGjohndoe;
+        break;
+        default:
+          componentAvatar = SVGmarcelo;
+      }
+
+      rows.push(createData(componentAvatar, user, props.users[user].questions.length, answered[user], props.users[user].questions.length + answered[user]))
       // rows.push("avatar", user, props.users[user].questions.length, props.answered[user], props.users[user].questions.length + props.answered[user])
       totalvalues.push(props.users[user].questions.length + answered[user]);
     })
@@ -103,7 +124,7 @@ export default function CustomizedTables(props) {
           {rowsState.map(row => (
             <StyledTableRow key={row.name}>
               <StyledTableCell component="th" scope="row">
-                {row.avatar}
+                <img style={{maxWidth: "48px"}} src={row.avatar} alt={"Avatar Logo"}/>
               </StyledTableCell>
               <StyledTableCell align="right">{row.name}</StyledTableCell>
               <StyledTableCell align="right">{row.posted}</StyledTableCell>
