@@ -56,6 +56,9 @@ export default function CustomizedTables(props) {
     // let's get the number of answered question for each user. We add the
     // result in the object answered...
     users.forEach( (user, indexUser) => {
+      // necessary to add the user in case of not having it here.
+      answered[user] = (answered[user] || 0);
+      
       questions.forEach( (question, indexQuestion) => {
         if (  ( questions[indexQuestion].optionOne.votes.indexOf(users[indexUser])  >= 0 ) ||
               ( questions[indexQuestion].optionTwo.votes.indexOf(users[indexUser]) >= 0 ) ) {

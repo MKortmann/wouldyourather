@@ -58,8 +58,6 @@ function App(props) {
 
         if ( signUpData ) {
 
-          setLoggedInStatus(toDo);
-
           if (signUpData.selectedUser) {
             arrayQuestions.forEach( (item, index) => {
               // check if the author of this questions is the logged authors
@@ -90,7 +88,7 @@ function App(props) {
       //  stayAtThisPage is important to show the user that he should stay at the
       // page after looking the questions of posted a question.
       if (toDo2 !== "stayAtThisPage") {
-        if ( (loggedInStatus !== "NOT_LOGGED_IN") ) {
+        if ( (loggedInStatus !== "NOT_LOGGED_IN") ||  signUpData) {
           props.history.push("/questions");
         } else  {
           props.history.push("/welcome") ;
@@ -102,9 +100,8 @@ function App(props) {
   }
 
   const handleLogin = (toDo) => {
-
     setLoggedInStatus(toDo);
-    fetchingAndReloading(toDo);
+    fetchingAndReloading(toDo, "");
 
   }
 
@@ -175,7 +172,7 @@ function App(props) {
         exact
         path={"/leaderboard"}
         render = { props => (
-          <Leaderboard {...props} questions={questions} users={users} />
+          <Leaderboard {...props} questions={questions} users={users} user={loggedInStatus} />
         )}
       />
 
