@@ -67,14 +67,25 @@ const QuestionShowResults = (props) => {
         break;
 
         default:
-        setState({checkedA: true, checkedB: false});
+
+        if ( props.questions[props.match.params.question_id].optionOne.votes.includes(props.user) ) {
+          setState({checkedA: true, checkedB: false});
+        } else {
+          setState({checkedA: false, checkedB: true});
+        }
+        // GET THE NUMBER OF VOTES OF OPTION TWO
+        numberOfVotesOfOptionTwo = props.questions[props.match.params.question_id].optionTwo.votes.length;
+        numberOfVotesOfOptionOne = props.questions[props.match.params.question_id].optionOne.votes.length;
         break;
       }
 
-      // SAVING THE QUESTION
-      props.saveQuestion({  authedUser: props.user,
-                            qid: props.match.params.question_id,
-                            answer: option} );
+      // SAVING THE QUESTION ONLY IF YOU HAVE NOT VOTED
+      if ( props.match.params.answer !== "voted") {
+        props.saveQuestion({  authedUser: props.user,
+                              qid: props.match.params.question_id,
+                              answer: option});
+      }
+
 
 
       // GET THE TOTAL NUMBER OF Votes

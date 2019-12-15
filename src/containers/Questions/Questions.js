@@ -27,13 +27,13 @@ function Questions(props) {
     if (answeredQuestionsShowFlag === true && props.answeredQuestions !== undefined) {
       componentQuestions = (
         props.answeredQuestions.map((item, index) => {
-          return(<QuestionCard key={item.id} item={item} users={props.users}/>)
+          return(<QuestionCard key={item.id} item={item} answered={true} users={props.users}/>)
         })
       )
     } else if ( answeredQuestionsShowFlag === false && props.unansweredQuestions !== undefined ) {
       componentQuestions = (
         props.unansweredQuestions.map((item, index) => {
-          return(<QuestionCard key={item.id} item={item} users={props.users}/>)
+          return(<QuestionCard key={item.id} item={item} answered={false} users={props.users}/>)
         })
       )
     }

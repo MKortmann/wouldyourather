@@ -10,6 +10,7 @@ const useStyles = makeStyles({
 });
 
 function QuestionCard(props) {
+
   // converting timestamp to date
   const data = props.item.timestamp;
   let ts = new Date(props.item.timestamp);
@@ -35,7 +36,11 @@ function QuestionCard(props) {
   return (
     <React.Fragment>
       { componentCard }
-      <StyledLink to={`/questions/${props.item.id}`} label={"View Question"}/>
+      { props.answered !== true ?
+        <StyledLink to={`/questions/${props.item.id}`} label={"View Question"}/>
+        :
+        <StyledLink to={`/questions/${props.item.id}/${"voted"}`} label={"View Answers"}></StyledLink>
+      }
     </React.Fragment>
   );
 }
