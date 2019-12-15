@@ -38,7 +38,7 @@ export default function DenseAppBar(props) {
     )
 
 
-  if ( props.loggedInStatus === "LOGGED_IN")  {
+  if ( props.loggedInStatus !== "NOT_LOGGED_IN")  {
     componentToRender = (
         <React.Fragment>
           <Typography variant="h6" color="inherit" className={classes.tab} >

@@ -18,10 +18,8 @@ import { _getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from "./_
 
 function App(props) {
 
-  // install lifecycle hook
+  // used to track not only if the user is logged but also which user is logged!
   const [loggedInStatus, setLoggedInStatus] = useState("NOT_LOGGED_IN");
-  // logged User
-  const [user, setUser] = useState(null);
 
   // state for answered and unanswered questions
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
@@ -43,7 +41,7 @@ function App(props) {
     fetchingAndReloading();
   }, [ ])
 
-  const fetchingAndReloading = ( toDo ) => {
+  const fetchingAndReloading = ( toDo, toDo2 = "false" ) => {
     // localStorage.clear();
     const questionsAnsweredTemp = [];
     const questionsUnAnsweredTemp = [];
@@ -58,25 +56,41 @@ function App(props) {
         setQuestions(res);
         const arrayQuestions = Object.values(res);
 
-        if ( signUpData) {
+        if ( signUpData ) {
 
-        arrayQuestions.forEach( (item, index) => {
-          // check if the author of this questions is the logged authors
-          if (  ( arrayQuestions[index].optionOne.votes.indexOf(signUpData.selectedUser)  >= 0 ) ||
-                ( arrayQuestions[index].optionTwo.votes.indexOf(signUpData.selectedUser) >= 0 ) ) {
-            questionsAnsweredTemp.push(item);
+          setLoggedInStatus(toDo);
+
+          if (signUpData.selectedUser) {
+            arrayQuestions.forEach( (item, index) => {
+              // check if the author of this questions is the logged authors
+              if (  ( arrayQuestions[index].optionOne.votes.indexOf(signUpData.selectedUser)  >= 0 ) ||
+                    ( arrayQuestions[index].optionTwo.votes.indexOf(signUpData.selectedUser) >= 0 ) ) {
+                questionsAnsweredTemp.push(item);
+              } else {
+                questionsUnAnsweredTemp.push(item);
+              }
+            })
           } else {
-            questionsUnAnsweredTemp.push(item);
+            arrayQuestions.forEach( (item, index) => {
+              // check if the author of this questions is the logged authors
+              if (  ( arrayQuestions[index].optionOne.votes.indexOf(signUpData.fullName)  >= 0 ) ||
+                    ( arrayQuestions[index].optionTwo.votes.indexOf(signUpData.fullName) >= 0 ) ) {
+                questionsAnsweredTemp.push(item);
+              } else {
+                questionsUnAnsweredTemp.push(item);
+              }
+            })
           }
-        })
 
         setAnsweredQuestions(questionsAnsweredTemp);
         setUnansweredQuestions(questionsUnAnsweredTemp);
       }
 
       // Important to check if the user is logged, or has already select or add a new user
-      if (toDo !== "STAY_IN_QUESTION_SHOW_RESULTS") {
-        if ( (setLoggedInStatus === "LOGGED_IN") || (user !== null)  ) {
+      //  stayAtThisPage is important to show the user that he should stay at the
+      // page after looking the questions of posted a question.
+      if (toDo2 !== "stayAtThisPage") {
+        if ( (loggedInStatus !== "NOT_LOGGED_IN") ) {
           props.history.push("/questions");
         } else  {
           props.history.push("/welcome") ;
@@ -87,10 +101,10 @@ function App(props) {
 
   }
 
-  const handleLogin = (data) => {
+  const handleLogin = (toDo) => {
 
-    setLoggedInStatus("LOGGED_IN");
-    fetchingAndReloading();
+    setLoggedInStatus(toDo);
+    fetchingAndReloading(toDo);
 
   }
 
@@ -105,7 +119,7 @@ function App(props) {
                             qid: qid,
                             answer: answer} );
 
-    fetchingAndReloading("STAY_IN_QUESTION_SHOW_RESULTS");
+    fetchingAndReloading(authedUser, "stayAtThisPage");
   }
 
   const submitQuestion = () => {
@@ -113,12 +127,12 @@ function App(props) {
 
     const optionOneText = newQuestion.firstOption;
     const optionTwoText = newQuestion.secondOption;
-    const author = user;
+    const author = loggedInStatus;
 
     _saveQuestion({optionOneText, optionTwoText, author})
       .then( res => console.log(res))
 
-    fetchingAndReloading();
+    fetchingAndReloading(author, "stayAtThisPage");
   }
 
   // used to the SignUP
@@ -140,7 +154,7 @@ function App(props) {
     const obj = {...signUpData}
     obj["selectedUser"] = selectedUser;
     setSignUpData(obj);
-    setUser(selectedUser);
+    setLoggedInStatus(selectedUser);
   }
 
   return (
@@ -153,7 +167,7 @@ function App(props) {
         exact
         path={"/welcome"}
         render = { props => (
-          <Welcome {...props} checkIn={checkIn} users={users} loggedInStatus={loggedInStatus}/>
+          <Welcome {...props} checkIn={checkIn} users={users} />
         )}
       />
 
@@ -161,7 +175,7 @@ function App(props) {
         exact
         path={"/leaderboard"}
         render = { props => (
-          <Leaderboard {...props} questions={questions} users={users} user={user} loggedInStatus={loggedInStatus}/>
+          <Leaderboard {...props} questions={questions} users={users} />
         )}
       />
 
@@ -169,48 +183,48 @@ function App(props) {
         exact
         path={"/questions"}
         render = { props => (
-          <Questions loggedInStatus={loggedInStatus} answeredQuestions={answeredQuestions} unansweredQuestions={unansweredQuestions}/>
+          <Questions answeredQuestions={answeredQuestions} unansweredQuestions={unansweredQuestions}/>
         )}
       />
 
       <Route
         path={"/signUp"}
         render = { props => (
-          <SignUp inputText={inputText} loggedInStatus={loggedInStatus}/>
+          <SignUp inputText={inputText} />
         )}
       />
 
       <Route
         path={"/newQuestion/submitted"}
         render = { props => (
-          <QuestionSubmitted submitQuestion={submitQuestion} loggedInStatus={loggedInStatus}/>
+          <QuestionSubmitted submitQuestion={submitQuestion} />
         )}
       />
 
       <Route
         path={"/newQuestion"}
         render = { props => (
-          <QuestionSubmit inputText={inputText} loggedInStatus={loggedInStatus}/>
+          <QuestionSubmit inputText={inputText} />
         )}
       />
 
       <Route
         path={"/checking"}
         render = { props => (
-          <Checking handleLogin={handleLogin} signUpData={signUpData} loggedInStatus={loggedInStatus}/>
+          <Checking handleLogin={handleLogin} signUpData={signUpData} />
         )}
       />
 
       <Route
         path={"/questions/:question_id/:answer"}
         render = { (props) => (
-          <QuestionShowResults {...props} saveQuestion={saveQuestion} questions={questions} users={users} user={user} loggedInStatus={loggedInStatus} />
+          <QuestionShowResults {...props} saveQuestion={saveQuestion} questions={questions} users={users} user={loggedInStatus} />
         )}
       />
       <Route
         path={"/questions/:question_id"}
         render = { (props) => (
-          <QuestionShow {...props} questions={questions} users={users} loggedInStatus={loggedInStatus} />
+          <QuestionShow {...props} questions={questions} users={users}  />
         )}
       />
       </Switch>

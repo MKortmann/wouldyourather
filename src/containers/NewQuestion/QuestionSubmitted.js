@@ -10,7 +10,7 @@ function Submitted (props) {
 
   return (
     <div>
-      <h1>Congratularions!!! Question Submitted</h1>
+      <h1>Congratulations!!! Question Submitted</h1>
       <StyledLink to={"/questions"} label={"Back"}></StyledLink>
     </div>
   )
