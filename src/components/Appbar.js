@@ -24,6 +24,17 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0,
     paddingLeft: 0
   },
+  signOut: {
+    background: "rgba(13,186,240,0.8)",
+    border: 0,
+    color: "white",
+    height: 48,
+    "&:hover": {
+      background: "rgba(255, 105, 135, .5)",
+    },
+    margin: "10px",
+    padding: "10px"
+  }
 }));
 
 export default function DenseAppBar(props) {
@@ -51,8 +62,8 @@ export default function DenseAppBar(props) {
             <StyledLink to="/leaderboard" label={"Leaderboard"} bgColor={"black"}/>
           </Typography>
           <Typography variant="h6" color="inherit"  className={classes.login}>
-            <span> Welcome {JSON.parse(localStorage.getItem("authUser"))} </span>
-            <span onClick={props.handleLogOut}>SignOut</span>
+            <span style={{marginRight: "10px"}}> Welcome <strong>{props.loggedInStatus}</strong> </span>
+            <span onClick={props.handleLogOut} className={classes.signOut}>SignOut</span>
           </Typography>
         </React.Fragment>
       )
