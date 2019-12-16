@@ -57,8 +57,8 @@ Method Signature:
 _getUsers()
 ```
 
-* Returns a Promise which resolves to a JSON object containing a collection of users.
-* This collection represents all the users that play this game.
+* Returns a Promise which resolves to a JSON object containing a collection of users
+* This collection represents all the users that play this game
 
 ### `getQuestions`
 
@@ -68,8 +68,8 @@ Method Signature:
 _getQuestions()
 ```
 
-* Returns a Promise which resolves to a JSON object containing a collection of questions.
-* This collection represents all the questions posted by all the users.
+* Returns a Promise which resolves to a JSON object containing a collection of questions
+* This collection represents all the questions posted by all the users
 
 ### `saveQuestionAnswer`
 
@@ -84,24 +84,23 @@ _saveQuestionAnswer ({  authedUser: authedUser,
 * save a question answer
 * authedUser: `User name that are posting this question`
 * qid: `each question has an id was generated automatically by _DATA.js`
-* answer: `answer answered by the user: in this case he choose only between two options.`
+* answer: `answer answered by the user: in this case he choose only between two options`
 
-### `saveQuestionAnswer`
+### `saveQuestion`
 
 Method Signature:
 
 ```js
-_saveQuestionAnswer ({  authedUser: authedUser,
-                        qid: qid,
-                        answer: answer} );
+_saveQuestion ({optionOneText, optionTwoText, author});
+
 ```
 
-* save a question answer
-* authedUser: `User name that are posting this question`
-* qid: `each question has an id was generated automatically by _DATA.js`
-* answer: `answer answered by the user: in this case he choose only between two options.`
+* add a new question 
+* author: `User name that are posting a new question`
+* optionOneText: `the first option of the question`
+* optionTwoText: `the second option of the question`
 
-### `getUsers`
+### `addUser`
 
 Method Signature:
 
