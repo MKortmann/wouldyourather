@@ -60,7 +60,7 @@ function App(props) {
 
         if ( signUpData ) {
 
-          if (signUpData.selectedUser) {
+          if (toDo2 === "logIn") {
             arrayQuestions.forEach( (item, index) => {
               // check if the author of this questions is the logged authors
               if (  ( arrayQuestions[index].optionOne.votes.indexOf(signUpData.selectedUser)  >= 0 ) ||
@@ -101,10 +101,9 @@ function App(props) {
 
   }
 
-  const handleLogin = (toDo) => {
+  const handleLogin = (toDo, toDo2) => {
     setLoggedInStatus(toDo);
-    fetchingAndReloading(toDo, "");
-
+    fetchingAndReloading(toDo, toDo2);
   }
 
   const handleLogOut = () => {

@@ -10,9 +10,9 @@ const Checking = (props) => {
     if(props.signUpData.fullName !== undefined) {
       // adding the user
       _addUser(props.signUpData.fullName)
-      props.handleLogin(props.signUpData.fullName);
+      props.handleLogin(props.signUpData.fullName, "signUp");
     } else if (props.signUpData.selectedUser !== undefined){
-      props.handleLogin(props.signUpData.selectedUser);
+      props.handleLogin(props.signUpData.selectedUser, "logIn");
     } else {
       props.history.push("/Welcome") //doing redirect here.
     }
