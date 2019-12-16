@@ -1,28 +1,29 @@
 # Would You Rather App
 
-The App is basically a game that the user has to logIn or signUp to start it. 
-The player can answer a question, ask question, view answered questions and leaderboard.
-This is the first version of the App that was developed from scratch using React and React-Router-Dom.#
+Would You Rather is a game of preferences that the user answer a preference question deciding between
+two options.
+The player can answer a question, ask question, view answered questions preferences and check the leaderboard.
+This is the first version of the App that was developed from scratch using React and React-Router-Dom.
 At this first stage we are not using any state management as Redux or Context.
 
-The idea is to develop an app that really need state management without it. Then we will apply it to really
-fell the advantages of using the state management.
+The idea is to develop an app that need state management without it. Sounds crazy, but this is the best
+way to learn. After that, we will implement the same app using a state management.
 
 The app enclosed an appbar and different views as:
 
   - **LogIn/SignUp**
-    * Select a user to start playing (logIn)
-    * Add a new user (signUp)
+    * LogIn: Select a user to start playing 
+    * SignUp: Add a new user
 
   - **Questions**
-    * Unanswered questions
-    * Answered questions
+    * See: Unanswered questions
+    * See: Answered questions
     
   - **New Questions**
     * You can add a new question
     
   - **Leaderboard**
-    * You see the board of players and their respective points
+    * You check the board of players and their respective points
 
 ## How to start the App?
 
@@ -40,12 +41,13 @@ The app enclosed an appbar and different views as:
 
 ## Backend Server
 
-To simplify the process I used a backend server. The provided file [`_DATA.js`](src/BooksAPI.js) contains the methods used to perform necessary operations on the backend:
-, , , _saveQuestion
+To simplify the process I used a backend server. The provided file [`_DATA.js`] by Udacity contains the methods used to perform necessary operations on the backend:
+
 * [`_getUsers`](#getUsers)
 * [`_getQuestions`](#getQuestions)
 * [`_saveQuestionAnswer`](#saveQuestionAnswer)
 * [`_saveQuestion`](#saveQuestion)
+* [`_addUser`](#addUser)
 
 ### `getUsers`
 
@@ -99,17 +101,26 @@ _saveQuestionAnswer ({  authedUser: authedUser,
 * qid: `each question has an id was generated automatically by _DATA.js`
 * answer: `answer answered by the user: in this case he choose only between two options.`
 
-## Important
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
+### `getUsers`
+
+Method Signature:
+
+```js
+_addUser(fullName)
+```
+
+* Add a new user
+* This collection represents all the users that play this game.
+
 
 #### Note about React
 
 The app was created used npx create-react-app! I started from scratch. However, I am using
-the Udacity _Book.js as a backend server. The API was extended by me to be able to add a new user.
+the Udacity the file [`_DATA.js`] as a backend server. The API was extended by me to be able to add a new user.
 
 ### More Information
 
-This project has the main objective to practice and show my knowledge in React and React-Dom-Router4!
+This project has the main objective to practice and show my knowledge in React and React-Dom-Router!
 --For any extra information, please, feel free to contact me.
 
 ### Contributions
