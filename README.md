@@ -1,68 +1,117 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Would You Rather App
 
-## Available Scripts
+The App is basically a game that the user has to logIn or signUp to start it. 
+The player can answer a question, ask question, view answered questions and leaderboard.
+This is the first version of the App that was developed from scratch using React and React-Router-Dom.#
+At this first stage we are not using any state management as Redux or Context.
 
-In the project directory, you can run:
+The idea is to develop an app that really need state management without it. Then we will apply it to really
+fell the advantages of using the state management.
 
-### `npm start`
+The app enclosed an appbar and different views as:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  - **LogIn/SignUp**
+    * Select a user to start playing (logIn)
+    * Add a new user (signUp)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+  - **Questions**
+    * Unanswered questions
+    * Answered questions
+    
+  - **New Questions**
+    * You can add a new question
+    
+  - **Leaderboard**
+    * You see the board of players and their respective points
 
-### `npm test`
+## How to start the App?
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ To use the app, please, click in the link below:
+ https://mkortmann.github.io/wouldyourather/
 
-### `npm run build`
+ To install the App, please, follow the instructions at Installation section.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+1. First you have to create a directory in the desire location
+2. git clone `ADD HERE GITHUB PROJECT LINK`
+3. install all project dependencies with `npm install`
+4. start the development server with `npm start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Backend Server
 
-### `npm run eject`
+To simplify the process I used a backend server. The provided file [`_DATA.js`](src/BooksAPI.js) contains the methods used to perform necessary operations on the backend:
+, , , _saveQuestion
+* [`_getUsers`](#getUsers)
+* [`_getQuestions`](#getQuestions)
+* [`_saveQuestionAnswer`](#saveQuestionAnswer)
+* [`_saveQuestion`](#saveQuestion)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `getUsers`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Method Signature:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```js
+_getUsers()
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* Returns a Promise which resolves to a JSON object containing a collection of users.
+* This collection represents all the users that play this game.
 
-## Learn More
+### `getQuestions`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Method Signature:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+_getQuestions()
+```
 
-### Code Splitting
+* Returns a Promise which resolves to a JSON object containing a collection of questions.
+* This collection represents all the questions posted by all the users.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### `saveQuestionAnswer`
 
-### Analyzing the Bundle Size
+Method Signature:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```js
+_saveQuestionAnswer ({  authedUser: authedUser,
+                        qid: qid,
+                        answer: answer} );
+```
 
-### Making a Progressive Web App
+* save a question answer
+* authedUser: `User name that are posting this question`
+* qid: `each question has an id was generated automatically by _DATA.js`
+* answer: `answer answered by the user: in this case he choose only between two options.`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### `saveQuestionAnswer`
 
-### Advanced Configuration
+Method Signature:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+```js
+_saveQuestionAnswer ({  authedUser: authedUser,
+                        qid: qid,
+                        answer: answer} );
+```
 
-### Deployment
+* save a question answer
+* authedUser: `User name that are posting this question`
+* qid: `each question has an id was generated automatically by _DATA.js`
+* answer: `answer answered by the user: in this case he choose only between two options.`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Important
+The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
-### `npm run build` fails to minify
+#### Note about React
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The app was created used npx create-react-app! I started from scratch. However, I am using
+the Udacity _Book.js as a backend server. The API was extended by me to be able to add a new user.
+
+### More Information
+
+This project has the main objective to practice and show my knowledge in React and React-Dom-Router4!
+--For any extra information, please, feel free to contact me.
+
+### Contributions
+
+The project was done completely by me starting from scratch. However, if you want to contribute, please, do not hesitate to contact me!
