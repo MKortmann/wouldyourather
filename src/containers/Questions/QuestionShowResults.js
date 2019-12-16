@@ -67,7 +67,7 @@ const QuestionShowResults = (props) => {
         break;
 
         default:
-
+        // here comes if the author only want to see the answered questions. He has already voted.
         if ( props.questions[props.match.params.question_id].optionOne.votes.includes(props.user) ) {
           setState({checkedA: true, checkedB: false});
         } else {

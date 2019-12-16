@@ -21,7 +21,7 @@ export default function CircularIndeterminate() {
 
   return (
     <div className={classes.root}>
-      <CircularProgress style={{minWidth: "30%", color: 'rgba(0,212,255,0.8)'}}/>
+      <CircularProgress size="10rem" style={{color: 'rgba(0,212,255,0.8)'}}/>
     </div>
   );
 }

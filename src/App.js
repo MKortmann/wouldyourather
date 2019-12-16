@@ -10,7 +10,9 @@ import QuestionSubmit from "./containers/NewQuestion/QuestionSubmit";
 import QuestionSubmitted from "./containers/NewQuestion/QuestionSubmitted";
 import Leaderboard from "./components/Leaderboard";
 import Checking from "./components/Checking";
-import { Switch, Route } from "react-router-dom";
+import NotFound from "./components/NotFound";
+import Spinner from "./components/Spinner";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import { withRouter } from 'react-router-dom';
 import { _getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from "./_DATA";
@@ -222,6 +224,21 @@ function App(props) {
         path={"/questions/:question_id"}
         render = { (props) => (
           <QuestionShow {...props} questions={questions} users={users}  />
+        )}
+      />
+
+      <Route
+        exact
+        path={"/"}
+        render = { (props) => (
+          <Spinner  />
+        )}
+      />
+
+      <Route
+        path={"*"}
+        render = { (props) => (
+          <NotFound  />
         )}
       />
       </Switch>
