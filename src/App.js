@@ -47,6 +47,8 @@ function App(props) {
     // localStorage.clear();
     const questionsAnsweredTemp = [];
     const questionsUnAnsweredTemp = [];
+    const questionsAnsweredTempOrd = [];
+    const questionsUnAnsweredTempOrd = [];
 
     _getUsers()
       .then(res => {
@@ -60,7 +62,7 @@ function App(props) {
 
         if ( signUpData ) {
 
-          if (toDo2 === "logIn") {
+          if (toDo2 === "logIn" || (toDo2 === "stayAtThisPage" && signUpData.selectedUser) ) {
             arrayQuestions.forEach( (item, index) => {
               // check if the author of this questions is the logged authors
               if (  ( arrayQuestions[index].optionOne.votes.indexOf(signUpData.selectedUser)  >= 0 ) ||
@@ -82,8 +84,39 @@ function App(props) {
             })
           }
 
-        setAnsweredQuestions(questionsAnsweredTemp);
-        setUnansweredQuestions(questionsUnAnsweredTemp);
+        // we have to reorganize the questions in order of the newest to the oldest
+        let rowsSorted = [];
+        let timeStamps = [];
+        questionsAnsweredTemp.forEach( (item, index) => {
+          timeStamps.push(item.timestamp);
+        })
+
+        // here we have to sort the values in accord with the size of the total points.
+        for ( let i = timeStamps.length; i > 0; i--) {
+          let index = timeStamps.indexOf(Math.max(...timeStamps));
+          rowsSorted.push(questionsAnsweredTemp[index]);
+          timeStamps.splice(index, 1);
+          questionsAnsweredTemp.splice(index, 1);
+        }
+
+        setAnsweredQuestions(rowsSorted);
+
+        // we have to reorganize the questions in order of the newest to the oldest
+        rowsSorted = [];
+        timeStamps = [];
+        questionsUnAnsweredTemp.forEach( (item, index) => {
+          timeStamps.push(item.timestamp);
+        })
+
+        // here we have to sort the values in accord with the size of the total points.
+        for ( let i = timeStamps.length; i > 0; i--) {
+          let index = timeStamps.indexOf(Math.max(...timeStamps));
+          rowsSorted.push(questionsUnAnsweredTemp[index]);
+          timeStamps.splice(index, 1);
+          questionsUnAnsweredTemp.splice(index, 1);
+        }
+
+        setUnansweredQuestions(rowsSorted);
       }
 
       // Important to check if the user is logged, or has already select or add a new user
