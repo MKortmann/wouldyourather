@@ -12,7 +12,7 @@ import Leaderboard from "./components/Leaderboard";
 import Checking from "./components/Checking";
 import NotFound from "./components/NotFound";
 import Spinner from "./components/Spinner";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import { withRouter } from 'react-router-dom';
 import { _getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion, _addUser} from "./_DATA";
@@ -41,14 +41,13 @@ function App(props) {
   // Here we load all the users and questions
   useEffect( () => {
     fetchingAndReloading();
-  }, [ ])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const fetchingAndReloading = ( user, toDo2 = "false" ) => {
     // localStorage.clear();
     const questionsAnsweredTemp = [];
     const questionsUnAnsweredTemp = [];
-    const questionsAnsweredTempOrd = [];
-    const questionsUnAnsweredTempOrd = [];
 
     _getUsers()
       .then(res => {
@@ -61,8 +60,6 @@ function App(props) {
         const arrayQuestions = Object.values(res);
 
         if ( signUpData && ( user !== null) ) {
-
-          // if (toDo2 === "logIn" || (toDo2 === "stayAtThisPage" && signUpData.selectedUser) ) {
             arrayQuestions.forEach( (item, index) => {
               // check if the author of this questions is the logged authors
               if (  ( arrayQuestions[index].optionOne.votes.indexOf(user)  >= 0 ) ||
@@ -72,17 +69,6 @@ function App(props) {
                 questionsUnAnsweredTemp.push(item);
               }
             })
-          // } else {
-            // arrayQuestions.forEach( (item, index) => {
-            //   // check if the author of this questions is the logged authors
-            //   if (  ( arrayQuestions[index].optionOne.votes.indexOf(signUpData.fullName)  >= 0 ) ||
-            //         ( arrayQuestions[index].optionTwo.votes.indexOf(signUpData.fullName) >= 0 ) ) {
-            //     questionsAnsweredTemp.push(item);
-            //   } else {
-            //     questionsUnAnsweredTemp.push(item);
-            //   }
-            // })
-          // }
 
         // we have to reorganize the questions in order of the newest to the oldest
         let rowsSorted = [];

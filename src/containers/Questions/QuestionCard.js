@@ -1,18 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import StyledLink from "../../components/StyledLink";
 
-const useStyles = makeStyles({
-
-});
-
 function QuestionCard(props) {
 
   // converting timestamp to date
-  const data = props.item.timestamp;
   let ts = new Date(props.item.timestamp);
 
   let componentCard = (

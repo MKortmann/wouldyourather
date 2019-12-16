@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 import { styled } from '@material-ui/core/styles';
 
 function button (props) {

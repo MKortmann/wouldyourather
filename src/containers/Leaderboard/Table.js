@@ -58,7 +58,7 @@ export default function CustomizedTables(props) {
     users.forEach( (user, indexUser) => {
       // necessary to add the user in case of not having it here.
       answered[user] = (answered[user] || 0);
-      
+
       questions.forEach( (question, indexQuestion) => {
         if (  ( questions[indexQuestion].optionOne.votes.indexOf(users[indexUser])  >= 0 ) ||
               ( questions[indexQuestion].optionTwo.votes.indexOf(users[indexUser]) >= 0 ) ) {
@@ -109,7 +109,7 @@ export default function CustomizedTables(props) {
 
     setRowState(rowsSorted);
 
-  }, [ ])
+  }, [props.users, props.questions ])
 
   return (
     <Paper className={classes.root}>

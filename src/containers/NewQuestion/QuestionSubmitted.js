@@ -6,6 +6,7 @@ function Submitted (props) {
 
   useEffect( () => {
     props.submitQuestion();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ ])
 
   return (
