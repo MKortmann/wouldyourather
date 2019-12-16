@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -18,6 +18,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
+import { withRouter } from 'react-router-dom';
+
 import StyledLink from "../../components/StyledLink";
 
 
@@ -36,7 +38,15 @@ import StyledLink from "../../components/StyledLink";
 
   const classes = useStyles();
 
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = useState("");
+
+  useEffect ( () => {
+    if (props.user === "NOT_LOGGED_IN") {
+      // if the user typed false address after questions
+      props.history.push("/") //doing redirect here.
+
+    }
+  }, [ ])
 
   const handleChange = event => {
     setValue(event.target.value);
@@ -45,6 +55,7 @@ import StyledLink from "../../components/StyledLink";
 
   let componentAvatar = "";
   let componentCard = "";
+
 
   if (props.questions !== null) {
 
@@ -99,4 +110,4 @@ import StyledLink from "../../components/StyledLink";
   )
 }
 
-export default QuestionShow;
+export default withRouter(QuestionShow);

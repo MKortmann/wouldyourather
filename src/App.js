@@ -222,7 +222,14 @@ function App(props) {
       <Route
         path={"/questions/:question_id"}
         render = { (props) => (
-          <QuestionShow {...props} questions={questions} users={users}  />
+          <QuestionShow {...props} questions={questions} users={users} user={loggedInStatus} />
+        )}
+      />
+
+      <Route
+        path={"/questions/"}
+        render = { (props) => (
+          <NotFound  />
         )}
       />
 
