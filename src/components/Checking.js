@@ -6,10 +6,8 @@ const Checking = (props) => {
 
   // get the data from localStorage
   useEffect(() => {
-
+    
     if(props.signUpData.fullName !== undefined) {
-      // adding the user
-      _addUser(props.signUpData.fullName)
       props.handleLogin(props.signUpData.fullName, "signUp");
     } else if (props.signUpData.selectedUser !== undefined){
       props.handleLogin(props.signUpData.selectedUser, "logIn");

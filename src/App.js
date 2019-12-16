@@ -15,7 +15,7 @@ import Spinner from "./components/Spinner";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import { withRouter } from 'react-router-dom';
-import { _getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from "./_DATA";
+import { _getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion, _addUser} from "./_DATA";
 
 
 function App(props) {
@@ -43,7 +43,7 @@ function App(props) {
     fetchingAndReloading();
   }, [ ])
 
-  const fetchingAndReloading = ( toDo, toDo2 = "false" ) => {
+  const fetchingAndReloading = ( user, toDo2 = "false" ) => {
     // localStorage.clear();
     const questionsAnsweredTemp = [];
     const questionsUnAnsweredTemp = [];
@@ -60,29 +60,29 @@ function App(props) {
         setQuestions(res);
         const arrayQuestions = Object.values(res);
 
-        if ( signUpData ) {
+        if ( signUpData && ( user !== null) ) {
 
-          if (toDo2 === "logIn" || (toDo2 === "stayAtThisPage" && signUpData.selectedUser) ) {
+          // if (toDo2 === "logIn" || (toDo2 === "stayAtThisPage" && signUpData.selectedUser) ) {
             arrayQuestions.forEach( (item, index) => {
               // check if the author of this questions is the logged authors
-              if (  ( arrayQuestions[index].optionOne.votes.indexOf(signUpData.selectedUser)  >= 0 ) ||
-                    ( arrayQuestions[index].optionTwo.votes.indexOf(signUpData.selectedUser) >= 0 ) ) {
+              if (  ( arrayQuestions[index].optionOne.votes.indexOf(user)  >= 0 ) ||
+                    ( arrayQuestions[index].optionTwo.votes.indexOf(user) >= 0 ) ) {
                 questionsAnsweredTemp.push(item);
               } else {
                 questionsUnAnsweredTemp.push(item);
               }
             })
-          } else {
-            arrayQuestions.forEach( (item, index) => {
-              // check if the author of this questions is the logged authors
-              if (  ( arrayQuestions[index].optionOne.votes.indexOf(signUpData.fullName)  >= 0 ) ||
-                    ( arrayQuestions[index].optionTwo.votes.indexOf(signUpData.fullName) >= 0 ) ) {
-                questionsAnsweredTemp.push(item);
-              } else {
-                questionsUnAnsweredTemp.push(item);
-              }
-            })
-          }
+          // } else {
+            // arrayQuestions.forEach( (item, index) => {
+            //   // check if the author of this questions is the logged authors
+            //   if (  ( arrayQuestions[index].optionOne.votes.indexOf(signUpData.fullName)  >= 0 ) ||
+            //         ( arrayQuestions[index].optionTwo.votes.indexOf(signUpData.fullName) >= 0 ) ) {
+            //     questionsAnsweredTemp.push(item);
+            //   } else {
+            //     questionsUnAnsweredTemp.push(item);
+            //   }
+            // })
+          // }
 
         // we have to reorganize the questions in order of the newest to the oldest
         let rowsSorted = [];
@@ -134,13 +134,19 @@ function App(props) {
 
   }
 
-  const handleLogin = (toDo, toDo2) => {
-    setLoggedInStatus(toDo);
-    fetchingAndReloading(toDo, toDo2);
+  const handleLogin = (user, toDo2) => {
+    if (toDo2 === "signUp") {
+      // adding the user
+      _addUser(signUpData.fullName)
+    }
+    setLoggedInStatus(user);
+    fetchingAndReloading(user, toDo2);
   }
 
   const handleLogOut = () => {
     setLoggedInStatus("NOT_LOGGED_IN");
+    // deleting the user data
+    setSignUpData(null);
     props.history.push("/welcome") //doing redirect here.
   }
 
