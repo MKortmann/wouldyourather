@@ -56,7 +56,7 @@ export default function DenseAppBar(props) {
             <StyledLink to="/questions" label={"Home"} />
           </Typography>
           <Typography variant="h6" color="inherit" className={classes.tab}>
-            <StyledLink to="/newQuestion" label={"New Question"} bgColor={"black"}/>
+            <StyledLink to="/add" label={"New Question"} bgColor={"black"}/>
           </Typography>
           <Typography variant="h6" color="inherit" className={classes.tab}  >
             <StyledLink to="/leaderboard" label={"Leaderboard"} bgColor={"black"}/>

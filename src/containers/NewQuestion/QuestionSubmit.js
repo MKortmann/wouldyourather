@@ -52,7 +52,7 @@ function QuestionSubmit (props) {
           <p id="server-modal-description">Please, fill out the two possible options bellow!</p>
           <Input inputText={props.inputText} label={"First Option"} elem="firstOption"/>
           <Input inputText={props.inputText} label={"Second Option"} elem="secondOption"/>
-          <StyledLink to="/newQuestion/submitted"  label={"Submit Question"}/>
+          <StyledLink to="/add/submitted"  label={"Submit Question"}/>
           <StyledLink to="/questions/"  label={"Back"}/>
         </div>
       </Modal>

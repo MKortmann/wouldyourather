@@ -141,6 +141,7 @@ const QuestionShowResults = (props) => {
               </Grid>
               <Grid item xs={2} style={{marginTop: "6px"}}>
                 {votes.numberOfVotesOfOptionOne} from {votes.totalNumberOfVotes}
+                {" "}({((votes.numberOfVotesOfOptionOne/votes.totalNumberOfVotes)*100).toFixed(2)}%)
               </Grid>
               <Grid item xs={1} >
                 <Checkbox
@@ -159,6 +160,7 @@ const QuestionShowResults = (props) => {
               </Grid>
               <Grid item xs={2} style={{marginTop: "6px"}}>
                 {votes.numberOfVotesOfOptionTwo} from {votes.totalNumberOfVotes}
+                {" "}({((votes.numberOfVotesOfOptionTwo/votes.totalNumberOfVotes)*100).toFixed(2)}%)
               </Grid>
             </Grid>
           </CardContent>

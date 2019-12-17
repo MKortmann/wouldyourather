@@ -218,14 +218,14 @@ function App(props) {
       />
 
       <Route
-        path={"/newQuestion/submitted"}
+        path={"/add/submitted"}
         render = { props => (
           <QuestionSubmitted submitQuestion={submitQuestion} />
         )}
       />
 
       <Route
-        path={"/newQuestion"}
+        path={"/add"}
         render = { props => (
           <QuestionSubmit inputText={inputText} />
         )}
