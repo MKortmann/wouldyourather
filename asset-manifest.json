@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1779617f.chunk.css",
+    "main.js": "/static/js/main.7d5204d7.chunk.js",
+    "main.js.map": "/static/js/main.7d5204d7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8c8a8e8a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8c8a8e8a.js.map",
+    "static/js/2.9a5d554f.chunk.js": "/static/js/2.9a5d554f.chunk.js",
+    "static/js/2.9a5d554f.chunk.js.map": "/static/js/2.9a5d554f.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.4e3b5c68544eeb275ba3fb54d3b16cce.js": "/precache-manifest.4e3b5c68544eeb275ba3fb54d3b16cce.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.1779617f.chunk.css.map": "/static/css/main.1779617f.chunk.css.map",
+    "static/js/2.9a5d554f.chunk.js.LICENSE.txt": "/static/js/2.9a5d554f.chunk.js.LICENSE.txt",
+    "static/media/johndoe.svg": "/static/media/johndoe.82a9b911.svg",
+    "static/media/mk.svg": "/static/media/mk.8ab4fec3.svg",
+    "static/media/sarahedo.svg": "/static/media/sarahedo.8deb430b.svg",
+    "static/media/tylermcginnis.svg": "/static/media/tylermcginnis.3a3215e6.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8c8a8e8a.js",
+    "static/js/2.9a5d554f.chunk.js",
+    "static/css/main.1779617f.chunk.css",
+    "static/js/main.7d5204d7.chunk.js"
+  ]
+}
